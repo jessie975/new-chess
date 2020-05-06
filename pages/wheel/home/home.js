@@ -27,7 +27,11 @@ Component({
     page: 0,
     showModel: false,
     noMore: false,
-    showLoading: true
+    showLoading: true,
+    roomid: '',
+    roomname: '',
+    people: '',
+    entryType: ''
   },
 
   methods: {
@@ -82,6 +86,7 @@ Component({
         pagesize: 10,
         status
       }).then(res => {
+        console.log("getCardList -> res", res)
         return res.data.msg.resultList
       }).catch(err => {
         $.tip(err.data.msg)
@@ -124,20 +129,50 @@ Component({
         }).exec()
       })
     },
-    watchRoom(e) {
+    jumpRoom(e) {
       const {
         roomid,
         password,
         roomname,
-        people
+        people,
+        type
       } = e.currentTarget.dataset
       if (password) {
         this.setData({
           showModel: true
         })
         // TODO:有密码时加入观战房间
+        this.setData({
+          roomid,
+          roomname,
+          people,
+          entryType: type
+        })
       } else {
-        router.jumpToWebView(roomid, roomname, people, 'comm_audience')
+        router.jumpToWebView(roomid, roomname, people, type)
+      }
+    },
+    submitSecret() {
+      const {
+        roomid,
+        roomSecret,
+        roomname,
+        people,
+        entryType
+      } = this.data
+      if (roomSecret === '') {
+        $.tip('密码不能为空~')
+      } else {
+        api.jumpWatch({
+          roomid,
+          password: roomSecret
+        }).then(res => {
+          if (res.data.code === 0) {
+            router.jumpToWebView(roomid, roomname, people, entryType)
+          } else {
+            $.tip(res.data.msg)
+          }
+        })
       }
     },
     inputSecret(e) {
@@ -146,21 +181,11 @@ Component({
         roomSecret: value
       })
     },
-    againstRoom(e) {
-      const {
-        roomid,
-        password,
-        roomname,
-        people
-      } = e.currentTarget.dataset
-      if (password) {
-        this.setData({
-          showModel: true
-        })
-        // TODO:有密码时加入对战房间
-      } else {
-        router.jumpToWebView(roomid, roomname, people, 'comm_fight')
-      }
+    cancelSecret() {
+      this.setData({
+        roomSecret: '',
+        showModel: false
+      })
     },
     async initUI(tabbarHeight) {
       const swiperHeight = await this.getSwiperHeight()

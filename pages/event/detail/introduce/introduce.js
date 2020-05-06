@@ -1,4 +1,5 @@
 import api from '../../../../request/index'
+import $ from '../../../../utils/util'
 Component({
   /**
    * 组件的属性列表
@@ -16,7 +17,9 @@ Component({
     match: {},
     showLoading: true,
     clock: '',
-    userList: []
+    userList: [],
+    stop: false,
+    hasSignUp: false
   },
 
   /**
@@ -52,7 +55,8 @@ Component({
 
       if (total_micro_second <= 0) {
         that.setData({
-          clock: "已经截止啦~"
+          clock: "已经截止啦~",
+          stop: true
         })
         return
       }
@@ -67,6 +71,24 @@ Component({
       }).then(res => {
         return res.data.msg
       })
+    },
+    signUp() {
+      if (this.data.stop) {
+        $.tip('赛事已经截止咯~')
+      } else if (this.data.hasSignUp) {
+        $.tip('您已经报名了')
+      } else {
+        api.signUpEvent({
+          matchId: this.data.matchid
+        }).then(res => {
+          if (res.data.code === 0) {
+            $.tip('报名成功~')
+            this.setData({
+              hasSignUp: true
+            })
+          }
+        })
+      }
     }
   },
   lifetimes: {

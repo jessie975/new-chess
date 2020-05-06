@@ -27,6 +27,9 @@ module.exports = {
     getEventDetail: {
         url: '/wx/match/getMatchDtl'
     },
+    signUpEvent: {
+        url: '/wx/match/isEnrollMatch?matchId=${matchId}'
+    },
     getTimeTable: {
         url: '/wx/roundtime/getMatchRoundUser?matchId=${matchId}&roundno=${roundno}'
     },

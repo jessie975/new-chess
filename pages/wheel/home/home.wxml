@@ -45,10 +45,10 @@
                 </view>
             </view>
             <view class="entry">
-                <view class="btn margin-bottom-sm" bindtap="watchRoom" data-roomid="{{item.roomid}}" data-password="{{item.password}}" data-roomname="{{item.title}}" data-people="{{item.maxACount}}">
+                <view class="btn margin-bottom-sm" bindtap="jumpRoom" data-type="comm_audience" data-roomid="{{item.roomid}}" data-password="{{item.password}}" data-roomname="{{item.title}}" data-people="{{item.maxACount}}">
                     <image src="/images/icon/watch.png" class="btn-bg" />
                 </view>
-                <view class="btn" wx:if="{{tabIndex !== 1}}" bindtap="againstRoom" data-roomid="{{item.roomid}}" data-password="{{item.password}}" data-roomname="{{item.title}}" data-people="{{item.maxACount}}">
+                <view class="btn" wx:if="{{tabIndex !== 1}}" bindtap="jumpRoom" data-type="comm_fight" data-roomid="{{item.roomid}}" data-password="{{item.password}}" data-roomname="{{item.title}}" data-people="{{item.maxACount}}">
                     <image src="/images/icon/against.png" class="btn-bg" />
                 </view>
             </view>

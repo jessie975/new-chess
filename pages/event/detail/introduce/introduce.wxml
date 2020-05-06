@@ -71,7 +71,7 @@
         <text class="text-df">距离截止时间还有：</text>
         <text class="text-green">{{clock}}</text>
     </view>
-    <view class="border radius text-center submit margin-bottom">
+    <view class="border radius text-center submit margin-bottom" bindtap="signUp">
         <text class="text-lg text-theme" decode="{{true}}">我&emsp;要&emsp;报&emsp;名</text>
     </view>
 </view>
