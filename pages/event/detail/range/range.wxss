@@ -35,3 +35,9 @@
 .nav .cu-item.cur {
 	border-bottom: 4rpx solid;
 }
+
+.column-item {
+    height: 64rpx;
+    line-height: 64rpx;
+    text-align: center;
+}

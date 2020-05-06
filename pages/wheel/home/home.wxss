@@ -25,10 +25,9 @@
     overflow: hidden;
 }
 .card-list .no-more {
-    position: absolute;
-    left: 50%;
-    bottom: 30rpx;
-    transform: translateX(-50%);
+    width: 100%;
+    margin: 10rpx auto;
+    text-align: center;
 }
 .card-container {
     width: 100%;

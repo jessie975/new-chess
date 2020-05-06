@@ -4,7 +4,7 @@
     </scroll-view> -->
     <scroll-view scroll-x class="nav margin-top" scroll-with-animation scroll-left="{{scrollLeft}}">
         <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key="index">
-            <view wx:for="{{item}}" wx:for-item="value">{{value}}</view>
+            <view class="column-item" wx:for="{{item}}" wx:for-item="value">{{value}}</view>
         </view>
     </scroll-view>
 </scroll-view>

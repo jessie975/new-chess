@@ -1,4 +1,5 @@
 import api from '../../../../request/index'
+const { make2dArr } = require('./../../../../utils/util')
 
 Component({
   /**
@@ -26,7 +27,9 @@ Component({
       winPoints: "胜局",
       rivalMostPoints: "对手最高名次",
       blackPoints: "后手局数",
-      blackWinPoints: "对手分"
+      blackWinPoints: "对手分",
+      username: "用户名",
+      sortSingle: "排名"
     }
   },
 
@@ -51,28 +54,22 @@ Component({
       api.getEventRange({
         matchId: 1//this.data.matchid
       }).then(res => {
-        console.log("getData -> res", res)
         const {
-          fractions,
-          rankingUser
+          fractions = [],
+          rankingUser = []
         } = res.data.msg
-        const lowFractions = fractions.map(item => this.replaceUnderLine(item))
-        const sort = ['排名']
-        const name = ['姓名']
-        const list = []
-        rankingUser.forEach((item, index) => {
-          sort.push(item.sortSingle)
-          name.push(item.username)
+
+        const { data: { titleMap } } = this
+        const lowFractions = ['sortSingle', 'username', ...fractions.map(item => this.replaceUnderLine(item))]
+        const list = make2dArr(lowFractions.length, rankingUser.length + 1)
+
+        rankingUser.forEach((user, i) => {
+          lowFractions.forEach((obj, j) => {
+            if(i === 0) { list[j][i] = titleMap[obj] }
+            list[j][i + 1] = user[obj]
+          })
         })
-        list.push(sort)
-        list.push(name)
-        lowFractions.forEach(item => {
-          const arr = []
-          arr.push(this.data.titleMap[item])
-          list.push(arr)
-        })
-        console.log(list)
-        console.log(sort, name)
+        console.log('log => : getData -> list', list)
         this.setData({
           list,
           showLoading: false

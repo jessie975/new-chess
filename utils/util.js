@@ -29,7 +29,20 @@ const tip = (msg, duration = 2000) => {
   )
 }
 
+const make2dArr = (line, column) => {
+  const arr = new Array()
+  for (let i = 0; i < line; i++) {
+    arr[i] = new Array()
+    for (let j = 0; j < column; j++) {
+      arr[i][j] = null
+    }
+  }
+
+  return arr
+}
+
 module.exports = {
   formatTime,
-  tip
+  tip,
+  make2dArr
 }

@@ -87,13 +87,13 @@ Component({
         $.tip(err.data.msg)
       })
     },
-    getList() {
+    async getList() {
       const page = this.data.page + 1
       let list = []
       if (this.data.tabIndex === 0) {
-        list = this.getCardList('preparing', page)
+        list = await this.getCardList('preparing', page)
       } else if (this.data.tabIndex === 1) {
-        list = this.getCardList('fighting', page)
+        list = await this.getCardList('fighting', page)
       } else {
         //TODO: 其他tab栏接口未知
         list = []

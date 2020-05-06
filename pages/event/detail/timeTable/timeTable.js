@@ -38,7 +38,7 @@ Component({
   methods: {
     getTimeTable() {
       api.getTimeTable({
-        matchId: this.data.matchid,
+        matchId: 1,//this.data.matchid,
         roundno: 1
       }).then(res => {
         console.log("getTimeTable -> res", res)
