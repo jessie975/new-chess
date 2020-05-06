@@ -64,6 +64,21 @@
 					"pathName": "pages/event/detail/home/home",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/welcome/index/index",
+					"pathName": "pages/welcome/index/index",
+					"query": "room_id= room158873660606377&room_name=小木子& room_people_num=10",
+					"scene": 1036,
+					"referrerInfo": {}
+				},
+				{
+					"id": -1,
+					"name": "pages/webview/webview",
+					"pathName": "pages/webview/webview",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

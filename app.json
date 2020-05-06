@@ -2,9 +2,17 @@
   "pages":[
     "pages/welcome/index/index",
     "pages/index/index",
+    "pages/wheel/search/search",
+    "pages/wheel/creat/creat",
     "pages/event/detail/home/home",
+    "pages/event/detail/introduce/introduce",
+    "pages/event/detail/timeTable/timeTable",
+    "pages/event/detail/range/range",
     "pages/user/card/card",
-    "pages/user/question/question"
+    "pages/user/modify/modify",
+    "pages/user/question/question",
+    "pages/user/aboutUs/aboutUs",
+    "pages/webview/webview"
   ],
   "window": {
     "backgroundTextStyle": "light",

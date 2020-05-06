@@ -22,7 +22,7 @@ Page({
     api.getUserGoodsInfo().then(res => {
       console.log("getCard -> res", res)
       const list = res.data.msg
-      if (list.length) {
+      if (list) {
         list.forEach(item => {
           item['src'] = this.data.srcMap[item.goodsType]
           item['title'] = this.data.titleMap[item.goodsType]

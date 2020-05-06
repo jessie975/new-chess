@@ -1,6 +1,6 @@
 <view class="detail flex justify-center">
     <view class="img border radius">
-        <image src="/images/chess.jpeg" />
+        <image src="{{match.matchpic?match.matchpic:'/images/chess.jpeg'}}" />
     </view>
     <view class="text margin-left-lg flex direction-column justify-around">
         <view class="title text-bold text-white text-lg">{{match.matchname}}</view>
@@ -50,11 +50,13 @@
     </view>
 </view>
 <view class="people text-white">
-    <view class="title margin-bottom-sm margin-left-xl">报名人数：{{match.minenrollment}}/{{match.maxenrollment}}</view>
-    <scroll-view scroll-x="{{true}}" class="container">
-        <view class="item text-center margin-right" wx:for="{{userList}}" style="display: inline-block;">
+    <view class="title margin-bottom-sm margin-left-xl">
+        报名人数：{{match.enrollpsnCount}}/{{match.maxenrollment}}
+    </view>
+    <scroll-view scroll-x="{{true}}" class="container" wx:if="{{userList.length}}">
+        <view class="item text-center margin-right" wx:for="{{userList}}" wx:key="index" style="display: inline-block;">
             <view class="avatar border">
-                <image style="width: 100%; height: 100%;" src="{{item.avatar}}"/>
+                <image style="width: 100%; height: 100%;" src="{{item.avatar}}" />
             </view>
             <view class="nickname text-sm text-theme text-cut">{{item.nickname}}</view>
         </view>

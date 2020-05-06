@@ -1,4 +1,5 @@
 const pages = {
+    welcome: '/pages/welcome/index/index',
     creat: '/pages/wheel/creat/creat',
     search: '/pages/wheel/search/search',
     userCardInfo: '/pages/user/card/card',
@@ -35,7 +36,7 @@ export default {
     },
 
     jumpToWebView(roomId, roomName, roomPeopleNum, enterMode) {
-        const base_url = 'https://webview.jhbrain.cn/'
+        const base_url = 'https://dev.jhbrain.cn/'
         const userId = wx.getStorageSync('user_id')
         const token = wx.getStorageSync('token')
         const url = `${base_url}?user_id=${userId}&token=${token}&room_id=${roomId}&room_people_num=${roomPeopleNum}&enter_mode=${enterMode}`
@@ -45,7 +46,8 @@ export default {
             success: function (res) {
                 res.eventChannel.emit('acceptDataFromOpenerPage', {
                     url,
-                    title: roomName
+                    title: roomName,
+                    roomPeopleNum
                 })
             }
         })

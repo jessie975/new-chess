@@ -40,7 +40,7 @@
         <image class="list-item__bg" src="/images/col_card_bg.jpg" />
 
         <view class="list-item__main">
-          <image class="list-main__avatar" src="/images/rg.jpg" />
+          <image class="list-main__avatar" src="/images/man/rg.jpg" />
           <text class="list-main__name">任刚</text>
         </view>
 
@@ -51,7 +51,7 @@
         <image class="list-item__bg" src="/images/col_card_bg.jpg" />
 
         <view class="list-item__main">
-          <image class="list-main__avatar" src="/images/wyq.jpg" />
+          <image class="list-main__avatar" src="/images/man/wyq.jpg" />
           <text class="list-main__name">王亚琦</text>
         </view>
 
@@ -62,7 +62,7 @@
         <image class="list-item__bg" src="/images/col_card_bg.jpg" />
 
         <view class="list-item__main">
-          <image class="list-main__avatar" src="/images/lwc.jpg" />
+          <image class="list-main__avatar" src="/images/man/lwc.jpg" />
           <text class="list-main__name">刘威辰</text>
         </view>
 
@@ -73,7 +73,7 @@
         <image class="list-item__bg" src="/images/col_card_bg.jpg" />
 
         <view class="list-item__main">
-          <image class="list-main__avatar" src="/images/hjw.jpg" />
+          <image class="list-main__avatar" src="/images/man/hjw.jpg" />
           <text class="list-main__name">胡鉴闻</text>
         </view>
 

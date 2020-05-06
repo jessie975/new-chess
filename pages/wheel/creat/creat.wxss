@@ -102,8 +102,4 @@
 
 .submit {
     padding: 20rpx;
-    position: absolute;
-    bottom: 60rpx;
-    left: 50%;
-    transform: translateX(-50%);
 }

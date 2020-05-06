@@ -1,2 +1,4 @@
-<custom isBack="{{true}}" backText="关于我们"></custom>
-<image class="bg-img" src="/images/bg.jpg" />
+<view style="height: 100vh; overflow: hidden; position: fixed; width: 100%;">
+    <custom isBack="{{true}}" backText="关于我们"></custom>
+    <image class="bg-img" src="/images/bg.jpg" />
+</view>

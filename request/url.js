@@ -10,7 +10,7 @@ module.exports = {
         method: 'post'
     },
     searchRoom: {
-        url: 'wx/chess/room/searchRoom?page=${pageId}&pagesize=10&searchkey=${searchkey}',
+        url: 'wx/chess/room/searchRoom?page=${pageId}&pagesize=${pagesize}&searchKey=${searchKey}',
         method: 'post'
     },
     jumpWatch: {
@@ -57,5 +57,12 @@ module.exports = {
     },
     getQuestion: {
         url: '/wx/user/qa'
+    },
+    getUserIdentity: {
+        url: '/wx/user/identity'
+    },
+    applyPlusRoom: {
+        url: '/wx/user/applyPlusRoom',
+        method: 'post'
     }
 };

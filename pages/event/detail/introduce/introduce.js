@@ -72,6 +72,7 @@ Component({
   lifetimes: {
     async ready() {
       const matchIntroduce = await this.getMatch()
+      console.log("ready -> matchIntroduce", matchIntroduce)
       const userList = await this.getMatchEnrollpsn()
       const time = matchIntroduce.signendtime
       const timeDiff = new Date(time).getTime() - new Date().getTime() //时间差的毫秒数 

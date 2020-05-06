@@ -6,7 +6,7 @@ Page({
    */
   data: {
     navigator: ['介绍', '时间表', '排名'],
-    tabType: 'timeTable', //'introduce',
+    tabType: 'introduce',
     matchid: 0,
     navigatorHieght: 0
   },

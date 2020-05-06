@@ -1,8 +1,10 @@
 import api from '../../../request/index'
 import $ from '../../../utils/util'
 import router from '../../../utils/router'
+const app = getApp();
 Page({
   data: {
+    height: app.globalData.screenHeight,
     roomName: '',
     roomDetail: '',
     password: '',
@@ -19,7 +21,11 @@ Page({
     customGameTime: 5,
     customStepTime: 0,
     customAddTime: 0,
-    showPassword: false
+    showPassword: false,
+    roomPersonLimit: 3,
+    showLimit: false,
+    limitNumber: null,
+    limitReason: ''
   },
 
   changeWatchState() {
@@ -35,7 +41,16 @@ Page({
   },
 
   PickerChange(e) {
+    const {
+      peoplePicker
+    } = this.data
     const type = e.currentTarget.dataset.type
+    const value = e.detail.value
+    if (type === 'people' && value == peoplePicker.length - 1) {
+      this.setData({
+        showLimit: true
+      })
+    }
     this.setData({
       [type]: e.detail.value
     })
@@ -55,14 +70,14 @@ Page({
     })
   },
 
-  createData() {
+  createData(roomPersonLimit) {
     let PeopleBase = 2
     let gameBase = 5
     let addBase = 0
     let peoplePicker = []
     let gameTimePicker = []
     let addTimePicker = []
-    while (PeopleBase < 21) {
+    while (PeopleBase < roomPersonLimit + 1) {
       peoplePicker.push(PeopleBase)
       PeopleBase++
     }
@@ -78,6 +93,7 @@ Page({
       addTimePicker.push(addBase)
       addBase += 5
     }
+    peoplePicker.push('申请扩容')
     this.setData({
       peoplePicker,
       gameTimePicker,
@@ -85,7 +101,20 @@ Page({
     })
   },
 
-  createRoom() {
+  applyPlusRoom() {
+    const {
+      limitNumber,
+      limitReason
+    } = this.data
+    return api.applyPlusRoom({
+      num: limitNumber,
+      reason: limitReason
+    }).then(res => {
+      return res.data.code
+    })
+  },
+
+  async createRoom() {
     const {
       roomName,
       roomDetail,
@@ -102,7 +131,10 @@ Page({
       showPassword,
       gameTimePicker,
       stepTimePicker,
-      addTimePicker
+      addTimePicker,
+      showLimit,
+      limitNumber,
+      limitReason
     } = this.data
     const nickname = wx.getStorageSync('nickname')
     const title = roomName || nickname + '的房间'
@@ -136,8 +168,21 @@ Page({
         data.password = password
       }
     }
+    if (showLimit) {
+      if (!limitNumber || !limitReason) {
+        $.tip('申请扩容后，申请人数和申请原因不能为空')
+        return
+      } else {
+        const applyState = await this.applyPlusRoom()
+        if (applyState !== 0) {
+          $.tip('申请扩容失败~')
+        } else {
+          data.num = Number(limitNumber)
+          data.reason = String(limitReason)
+        }
+      }
+    }
     api.createRoom(data).then(res => {
-      console.log("createRoom -> res", res)
       if (res.data.code === 0) {
         $.tip('创建成功，即将跳转~')
         const {
@@ -152,7 +197,17 @@ Page({
     })
   },
 
-  onLoad() {
-    this.createData()
+  getUserIdentity() {
+    return api.getUserIdentity().then(res => {
+      return res.data.msg.roomPersonLimit
+    })
+  },
+
+  async onLoad() {
+    const roomPersonLimit = await this.getUserIdentity()
+    this.setData({
+      roomPersonLimit
+    })
+    this.createData(this.data.roomPersonLimit)
   }
 })

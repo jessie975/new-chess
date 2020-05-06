@@ -1,5 +1,7 @@
 import api from '../../../../request/index'
-const { make2dArr } = require('./../../../../utils/util')
+const {
+  make2dArr
+} = require('./../../../../utils/util')
 
 Component({
   /**
@@ -52,26 +54,35 @@ Component({
     },
     getData() {
       api.getEventRange({
-        matchId: 1//this.data.matchid
+        matchId: this.data.matchid
       }).then(res => {
         const {
           fractions = [],
-          rankingUser = []
+            rankingUser = []
         } = res.data.msg
+        if (rankingUser.length !== 0) {
+          const {
+            data: {
+              titleMap
+            }
+          } = this
+          const lowFractions = ['sortSingle', 'username', ...fractions.map(item => this.replaceUnderLine(item))]
+          const list = make2dArr(lowFractions.length, rankingUser.length + 1)
 
-        const { data: { titleMap } } = this
-        const lowFractions = ['sortSingle', 'username', ...fractions.map(item => this.replaceUnderLine(item))]
-        const list = make2dArr(lowFractions.length, rankingUser.length + 1)
-
-        rankingUser.forEach((user, i) => {
-          lowFractions.forEach((obj, j) => {
-            if(i === 0) { list[j][i] = titleMap[obj] }
-            list[j][i + 1] = user[obj]
+          rankingUser.forEach((user, i) => {
+            lowFractions.forEach((obj, j) => {
+              if (i === 0) {
+                list[j][i] = titleMap[obj]
+              }
+              list[j][i + 1] = user[obj]
+            })
           })
-        })
-        console.log('log => : getData -> list', list)
+          console.log('log => : getData -> list', list)
+          this.setData({
+            list
+          })
+        }
         this.setData({
-          list,
           showLoading: false
         })
       })

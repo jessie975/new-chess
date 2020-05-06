@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#000000",
+  "navigationStyle": "default",
+  "navigationBarTextStyle": "white"
 }

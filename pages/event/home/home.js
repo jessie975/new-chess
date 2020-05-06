@@ -69,6 +69,7 @@ Component({
         matchState: status
       }).then(res => {
         const list = res.data.msg.resultList
+        console.log("getList -> list", list)
         if (list.length) {
           this.setData({
             showEventEmpty: true

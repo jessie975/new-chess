@@ -21,15 +21,21 @@ Page({
   },
 
   search() {
-    const {inputValue} = this.data
+    const {
+      inputValue
+    } = this.data
     if (inputValue === '') {
       $.tip('输入内容不能为空')
     } else {
-      this.setData({showLoading: true})
+      this.setData({
+        showLoading: true
+      })
       api.searchRoom({
         page: 0,
+        pagesize: 10,
         searchkey: inputValue
       }).then(res => {
+        console.log("search -> res", res)
         const list = res.data.msg.resultList
         if (list) {
           this.setData({

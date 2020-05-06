@@ -1,3 +1,4 @@
+import router from '../utils/router'
 const host = 'https://www.yitongkc.com/renren-fast/';
 
 /**
@@ -12,10 +13,10 @@ const request = (params) => {
             } else {
                 url = host + params.url
             }
+            console.log("request -> url", url)
             let method = params.method ? params.method : 'get';
             const user_id = wx.getStorageSync('user_id')
             const token = wx.getStorageSync('token')
-            console.log('url -> ', url)
             wx.request({
                 url,
                 method,
@@ -27,17 +28,23 @@ const request = (params) => {
                     'YTKC_CDXSHDWH_TOKEN': token
                 },
                 success: (res) => {
-                    resolve(res);
+                    if (res.statusCode === 403) {
+                        router.redirectTo('welcome')
+                    } else {
+                        resolve(res)
+                    }
                 },
                 fail: (err) => {
-                    reject(err);
+                    reject(err)
                 }
             });
         });
     };
 };
 const GetRealUrl = (params) => {
-    let localParams = {...params};
+    let localParams = {
+        ...params
+    };
     let reUrl = '';
     let append = '';
     let keys = Object.keys(localParams);

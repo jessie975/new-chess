@@ -7,6 +7,9 @@
     margin: 20rpx auto;
     overflow: hidden;
 }
+.swiper image {
+    border-radius: 10rpx;
+}
 .tab {
     padding: 0 35rpx;
 }
@@ -49,6 +52,7 @@
 .card-container .img .avatar {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
 }
 .card-container .content .label {
     background-color: rgba(85, 62, 56, 0.8);

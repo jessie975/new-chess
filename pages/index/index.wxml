@@ -1,4 +1,4 @@
-<view style="height: 100vh; overflow: hidden;">
+<view style="height: 100vh; overflow: hidden; position: fixed; width: 100%;">
   <image class="bg-img" src="/images/bg.jpg" />
   <custom isBack="{{false}}"></custom>
   <wheel tabbarHeight="{{tabbarHeight}}" wx:if="{{PageCur=='wheel'}}"></wheel>
@@ -24,4 +24,15 @@
       <view class="{{PageCur=='user'?'text-theme':'text-darkText'}}">我的</view>
     </view>
   </view>
+  <model show="{{hasShare}}" class="has-share">
+    <image class="close" src="/images/icon/close.png" bindtap="close"/>
+    <view class="title">好友邀请您进入房间</view>
+    <view class="title text-lightText text-df">请选择进入方式</view>
+    <view class="btn" bindtap="jumpToWebview" data-type="comm_audience">
+      <image src="/images/icon/watch.png" class="btn-img" />
+    </view>
+    <view class="btn" bindtap="jumpToWebview" data-type="comm_fight">
+      <image src="/images/icon/against.png" class="btn-img" />
+    </view>
+  </model>
 </view>

@@ -13,7 +13,7 @@
                         {{item.matchname}}
                     </view>
                     <view class="people flex justify-between margin-tb">
-                        <text class="number text-lg text-darkText">报名人数：{{item.minenrollment}}/{{item.maxenrollment}}</text>
+                        <text class="number text-lg text-darkText">报名人数：{{item.enrollpsnCount}}/{{item.maxenrollment}}</text>
                         <view class="state padding-lr radius text-white" wx:if="{{tabIndex !== 2}}">{{tabIndex === 1 ? '对战中' : '报名中'}}</view>
                     </view>
                     <view class="host text-lightText">主办方：{{item.sponsor}}</view>

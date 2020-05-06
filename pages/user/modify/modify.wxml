@@ -1,11 +1,13 @@
-<custom isBack="{{true}}" backText="修改资料"></custom>
-<image class="bg-img" src="/images/bg.jpg" />
-<view class="container border radius flex padding justify-between align-center">
-    <text class="time text-white padding-left-sm">昵称：</text>
-    <view class="input text-white">
-        <input value="{{nickname}}" bindinput="inputValue"/>
+<view style="height: 100vh; overflow: hidden; position: fixed; width: 100%;">
+    <custom isBack="{{true}}" backText="修改资料"></custom>
+    <image class="bg-img" src="/images/bg.jpg" />
+    <view class="container border radius flex padding justify-between align-center">
+        <text class="time text-white padding-left-sm">昵称：</text>
+        <view class="input text-white">
+            <input value="{{nickname}}" bindinput="inputValue" />
+        </view>
     </view>
-</view>
-<view class="container border radius text-center submit" bindtap="submit">
-    <text class="text-lg text-theme" decode="{{true}}">确&emsp;认&emsp;修&emsp;改</text>
+    <view class="container border radius text-center submit" bindtap="submit">
+        <text class="text-lg text-theme" decode="{{true}}">确&emsp;认&emsp;修&emsp;改</text>
+    </view>
 </view>

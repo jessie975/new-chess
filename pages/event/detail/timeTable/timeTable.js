@@ -40,10 +40,10 @@ Component({
   methods: {
     getTimeTable(roundIndex) {
       api.getTimeTable({
-        matchId: 1, //this.data.matchid,
+        matchId: this.data.matchid,
         roundno: roundIndex + 1
       }).then(res => {
-        console.log("getTimeTable -> res", res)
+      console.log("getTimeTable -> res", res)
         this.setData({
           eventList: res.data.msg
         })
@@ -53,7 +53,6 @@ Component({
       api.getTimeTableMatch({
         matchId: 1
       }).then(res => {
-        console.log("getTimeTableMatch -> res", res)
         this.setData({
           roundList: res.data.msg
         })

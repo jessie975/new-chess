@@ -17,7 +17,19 @@ App({
       }
     })
   },
-  onLaunch: function () {
+  onLoad(option) {
+    console.log("onLoad -> option", option)
+    console.log(option)
+  },
+  onLaunch: function (option) {
+  console.log("option", option)
+    const {room_id, room_name, room_people_num} = option.query
+    this.globalData.hasShare = !!Object.keys(option.query).length
+    this.globalData.room = {
+      room_id,
+      room_name,
+      room_people_num
+    }
     this.initUiGlobal()
 
     // 获取系统信息
@@ -72,7 +84,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    tabbarHeight: 0
+    tabbarHeight: 0,
+    hasShare: {}
   },
   store: {
     StatusBar: 0,
