@@ -1,0 +1,60 @@
+<scroll-view scroll-y class="scrollPage">
+    <view class="user-info flex">
+        <view class="avatar border">
+            <image src="{{userInfo.avatar}}" class="image" />
+        </view>
+        <view class="info margin-left flex direction-column justify-around">
+            <view class="name text-lg text-theme">{{userInfo.nickname || '--'}}</view>
+            <view class="user-id text-lg text-theme">{{userInfo.userId || '--'}}</view>
+        </view>
+    </view>
+    <view class="number-area bg-color radius padding-lg">
+        <view class="sum flex justify-around margin-bottom">
+            <view class="integral">
+                <text class="text-sm margin-right-sm text-lightText">积分</text>
+                <text class="text-xxl  text-text">{{userInfo.points || 0}}</text>
+            </view>
+            <view class="win-rate">
+                <text class="text-sm margin-right-sm text-lightText">胜率</text>
+                <text class="text-xxl  text-text">{{userInfo.winPercent || 0}}%</text>
+            </view>
+        </view>
+        <view class="detail flex justify-around">
+            <view class="sum text-center">
+                <view class="number text-xl text-text">{{userInfo.totalCount || 0}}</view>
+                <view class="name text-lightText">对局</view>
+            </view>
+            <view class="yes text-center">
+                <view class="number text-xl text-text">{{userInfo.winCount || 0}}</view>
+                <view class="name text-lightText">胜场</view>
+            </view>
+            <view class="no text-center">
+                <view class="number text-xl text-text">{{userInfo.failCount || 0}}</view>
+                <view class="name text-lightText">负场</view>
+            </view>
+            <view class="average text-center">
+                <view class="number text-xl text-text">{{userInfo.drawCount || 0}}</view>
+                <view class="name text-lightText">平局</view>
+            </view>
+        </view>
+    </view>
+    <view class="entry bg-color radius padding-lg">
+        <view class="my-card flex justify-between padding-sm {{index === entryList.length - 1 ? '': 'border-bottom'}}" wx:for="{{entryList}}" bindtap="jump" data-type="{{item.type}}">
+            <view class="title text-text">{{item.name}}</view>
+            <text class="iconfont icon-right text-text"></text>
+        </view>
+    </view>
+</scroll-view>
+<model show="{{showModel}}" canCatch="{{true}}">
+    <view class="margin">
+        <text class="text-text">客服电话</text>
+        <text class="text-text margin-lr">{{phone}}</text>
+        <text class="iconfont icon-fuzhi" catchtap="copy" data-type="phone"></text>
+    </view>
+    <view class="margin">
+        <text class="text-text">客服微信</text>
+        <text class="text-text margin-lr">{{wechat}}</text>
+        <text class="iconfont icon-fuzhi" catchtap="copy" data-type="wechat"></text>
+    </view>
+</model>
+<loading show="{{showLoading}}"></loading>

@@ -1,0 +1,128 @@
+@import '/style/main.wxss';
+
+.detail,
+.rule,
+.declare,
+.apply,
+.people {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.detail {
+    margin: 20rpx auto;
+}
+
+.detail .img {
+    width: 200rpx;
+    height: 160rpx;
+    overflow: hidden;
+}
+
+.detail image {
+    width: 100%;
+    height: 100%;
+}
+
+.detail .text {
+    width: 60%;
+}
+
+.detail .text .host {
+    border: 1px solid #FAF5EF;
+    padding: 5rpx 10rpx;
+}
+.people {
+    margin-top: 60rpx;
+    width: 100%;
+}
+.people .container {
+    width: 100%;
+    height: 150rpx;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+    padding: 0 30rpx;
+    position: relative;
+}
+
+.people .container::before {
+    content: '';
+    width: 100rpx;
+    height: 100%;
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.people .container::after {
+    content: '';
+    width: 100rpx;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.people .item {
+    width: 100rpx;
+    height: 100%;
+}
+
+.people .avatar {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 10rpx;
+    margin-top: 5rpx;
+}
+
+.rule {
+    height: 120rpx;
+    margin: 40rpx auto;
+}
+
+.rule .integral,
+.rule .time {
+    width: 50%;
+    height: 100%;
+}
+
+.rule .line {
+    width: 1px;
+    height: 100%;
+    background-color: #FAF5EF;
+}
+
+.rule .time {
+    font-size: 27rpx;
+}
+
+.declare {
+    margin: 40rpx auto 200rpx;
+}
+
+.apply {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.apply::before {
+    content: '';
+    width: 150%;
+    height: 150%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    position: fixed;
+    left: -25%;
+    bottom: 0;
+    z-index: -100;
+}
+
+.apply .submit {
+    padding: 15rpx;
+    background: rgba(132, 120, 90, 0.4);
+}

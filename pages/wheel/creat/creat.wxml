@@ -1,0 +1,80 @@
+<custom isBack="{{true}}" backText="创建房间"></custom>
+<image class="bg-img" src="/images/bg.jpg" />
+<view class="container border radius">
+    <view class="room-name margin-bottom">
+        <text class="text-lg text-theme margin-right">房间名</text>
+        <input class="input text-white padding-lr" placeholder="请输入房间名" placeholder-class="text-lightText" value="{{roomName}}" bindinput="inputInfo" data-type="roomName"/>
+    </view>
+    <view class="detail margin-bottom">
+        <text class="text-lg text-theme margin-right textarea-label" decode="{{true}}">简&emsp;介</text>
+        <textarea class="input text-white padding-lr textarea" placeholder="请输入简介" placeholder-class="text-lightText" value="{{roomDetail}}" bindinput="inputInfo" data-type="roomDetail"></textarea>
+    </view>
+    <view class="password margin-bottom">
+        <text class="text-lg text-theme margin-right textarea-label" decode="{{true}}">密&emsp;码</text>
+        <input class="input text-white padding-lr" placeholder="请输入密码" placeholder-class="text-lightText" value="{{password}}" bindinput="inputInfo" data-type="password" wx:if="{{showPassword}}"/>
+        <view class="password-btn margin-left-lg" bindtap="showPassword">
+            <view class="can-password" wx:if="{{showPassword}}"></view>
+        </view>
+    </view>
+    <view class="people-number margin-bottom">
+        <text class="text-lg text-theme" decode="{{true}}">人&emsp;数</text>
+        <view class="number" bindtap="showPicker">
+            <picker bindchange="PickerChange" value="{{people}}" range="{{peoplePicker}}" data-type="people">
+                <text class="picker text-white text-lg">{{peoplePicker[people]}}人</text>
+                <text class="iconfont text-white text-lg icon-right margin-left"></text>
+            </picker>
+        </view>
+    </view>
+    <view class="can-watch align-center" style="justify-content: flex-start">
+        <text class="text-lg text-theme margin-right">允许观战</text>
+        <view class="switch">
+            <!-- <view class="switch-btn {{canWatch ? 'can-watch-btn' : 'no-watch-btn'}}"></view> -->
+            <switch checked="{{canWatch}}" bindchange="changeWatchState" color="#CDB68A"/>
+        </view>
+    </view>
+</view>
+<view class="container border radius">
+    <view class="host margin-bottom">
+        <picker bindchange="PickerChange" value="{{hostGameTime}}" range="{{gameTimePicker}}" data-type="hostGameTime">
+            <view class="time text-center {{timeIndex === '1' ? 'choose-border' : ''}}" bindtap="showPicker" data-index="1">
+                <view class="text-theme">房主局时</view>
+                <view class="text-white">{{gameTimePicker[hostGameTime]}}分钟</view>
+            </view>
+        </picker>
+        <picker bindchange="PickerChange" value="{{hostStepTime}}" range="{{stepTimePicker}}" data-type="hostStepTime">
+            <view class="time text-center {{timeIndex === '2' ? 'choose-border' : ''}}" bindtap="showPicker" data-index="2">
+                <view class="text-theme">房主步时</view>
+                <view class="text-white">{{stepTimePicker[hostStepTime]}}</view>
+            </view>
+        </picker>
+        <picker bindchange="PickerChange" value="{{hostAddTime}}" range="{{addTimePicker}}" data-type="hostAddTime">
+            <view class="time text-center {{timeIndex === '3' ? 'choose-border' : ''}}" bindtap="showPicker" data-index="3">
+                <view class="text-theme">房主加秒</view>
+                <view class="text-white">{{addTimePicker[hostAddTime]}}秒</view>
+            </view>
+        </picker>
+    </view>
+    <view class="custom">
+        <picker bindchange="PickerChange" value="{{customGameTime}}" range="{{gameTimePicker}}" data-type="customGameTime">
+            <view class="time text-center {{timeIndex === '4' ? 'choose-border' : ''}}" bindtap="showPicker" data-index="4">
+                <view class="text-theme">玩家局时</view>
+                <view class="text-white">{{gameTimePicker[customGameTime]}}分钟</view>
+            </view>
+        </picker>
+        <picker bindchange="PickerChange" value="{{customStepTime}}" range="{{stepTimePicker}}" data-type="customStepTime">
+            <view class="time text-center {{timeIndex === '5' ? 'choose-border' : ''}}" bindtap="showPicker" data-index="5">
+                <view class="text-theme">玩家步时</view>
+                <view class="text-white">{{stepTimePicker[customStepTime]}}</view>
+            </view>
+        </picker>
+        <picker bindchange="PickerChange" value="{{customAddTime}}" range="{{addTimePicker}}" data-type="customAddTime">
+            <view class="time text-center {{timeIndex === '6' ? 'choose-border' : ''}}" bindtap="showPicker" data-index="6">
+                <view class="text-theme">玩家加秒</view>
+                <view class="text-white">{{addTimePicker[customAddTime]}}秒</view>
+            </view>
+        </picker>
+    </view>
+</view>
+<view class="container border radius text-center submit" bindtap="createRoom">
+    <text class="text-lg text-theme" decode="{{true}}">创&emsp;建</text>
+</view>

@@ -1,0 +1,51 @@
+<custom isBack="{{true}}" backText="搜索房间"></custom>
+<image class="bg-img" src="/images/bg.jpg" />
+<view class="search flex justify-around">
+    <input class="input radius padding-lr text-white" placeholder="房间名、房间id、房主名" placeholder-class="text-lightText" value="{{inputValue}}" bindinput="inputValue" />
+    <view class="btn" bindtap="search">
+        <image class="icon" src="/images/icon/search.png" />
+    </view>
+</view>
+<view class="result bg-color radius padding-sm" style="height: {{height}}px">
+    <scroll-view scroll-y style="height: {{height}}px;" wx:if="{{list.length}}">
+        <view class="card-container {{index === list.length - 1 ? '' : 'border-bottom'}}" wx:for="{{list}}">
+            <view class="img border">
+                <image src="{{item.url}}" />
+            </view>
+            <view class="content">
+                <view class="room-name text-cut text-bold text-df text-text">
+                    {{item.roomName}}
+                </view>
+                <view class="label-container">
+                    <view class="label text-white margin-right-sm text-sm" wx:for="{{item.labelList}}" wx:for-item="label" wx:key-index="labelIndex">
+                        {{label}}
+                    </view>
+                </view>
+                <view class="time flex">
+                    <text class="game-time text-sm text-lightText">局时:{{item.gameTime}}分钟</text>
+                    <text class="step-time text-sm text-lightText margin-lr-sm">
+                        步时:{{item.stepTime}}秒
+                    </text>
+                    <text class="step-time text-sm text-lightText">加秒:{{item.addTime}}秒</text>
+                </view>
+                <view class="other text-cut text-sm text-lightText">{{item.other}}</view>
+                <view class="people">
+                    <text class="iconfont icon-wode_tianchong text-sm text-lightText"></text>
+                    <text class="step-time text-sm text-lightText">已加入: {{item.current}}</text>
+                    <text class="iconfont icon-wode1 text-sm text-lightText margin-left"></text>
+                    <text class="step-time text-sm text-lightText">空位: {{item.sum}}</text>
+                </view>
+            </view>
+            <view class="entry">
+                <view class="watch margin-bottom-sm">
+                    <image src="/images/icon/watch.png" />
+                </view>
+                <view class="against" wx:if="{{tabIndex !== 1}}">
+                    <image src="/images/icon/against.png" />
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="empty text-center margin-top-xxl" wx:if="{{showEmpty}}">暂时没有这个房间</view>
+</view>
+<loading show="{{showLoading}}" tip="搜索中"></loading>

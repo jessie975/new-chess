@@ -1,0 +1,70 @@
+<scroll-view class="scrollPage">
+    <view class="swiper radius border" id="swiper">
+        <swiper class="screen-swiper" circular="true" autoplay="true" interval="5000" duration="500">
+            <swiper-item wx:for="{{swiperList}}" wx:key="index" bindtap="jumpWebview" data-url="{{item.jumpurl}}">
+                <image src="{{item.storageurl}}" mode="scaleToFill"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="tab flex justify-between" id="tab">
+        <navigator width="{{500}}" navigator="{{navigator}}" bind:tabSelect="tabSelect"></navigator>
+        <view class="creat-room" bindtap="creat">
+            <image class="icon" src="/images/icon/add.png" />
+        </view>
+        <view class="search-room" bindtap="search">
+            <image class="icon" src="/images/icon/search.png" />
+        </view>
+    </view>
+    <scroll-view class="card-list bg-color radius" scroll-y="{{true}}" style="height: {{listHeight}}px;" bindscrolltolower="getList">
+        <view class="card-container {{index === cardList.length - 1 ? '' : 'border-bottom'}}" wx:for="{{cardList}}" wx:key="index">
+            <view class="img border">
+                <image src="{{item.avatar}}" class="avatar" />
+            </view>
+            <view class="content">
+                <view class="room-name text-cut text-bold text-df text-text">{{item.title}}</view>
+                <view class="label text-white margin-right-sm text-sm" wx:if="{{item.tag !== 'comm'}}">
+                    {{item.tag}}
+                </view>
+                <view class="time flex text-cut">
+                    <view class="game-time text-sm text-lightText">
+                        局时:{{item.timeRule.playerMatchTime < 60 ? item.timeRule.playerMatchTime : item.timeRule.playerMatchTime / 60}}分钟
+                    </view>
+                    <view class="step-time text-sm text-lightText margin-lr-sm">
+                        步时:{{item.timeRule.playerStepTime > 60 ? item.timeRule.playerStepTime / 60 + '分钟' : item.timeRule.playerStepTime + '秒'}}
+                    </view>
+                    <view class="step-time text-sm text-lightText">
+                        加秒:{{item.timeRule.playerStepAddTime}}秒
+                    </view>
+                </view>
+                <view class="other text-cut text-sm text-lightText">{{item.summary}}</view>
+                <view class="people">
+                    <text class="iconfont icon-wode_tianchong text-sm text-lightText"></text>
+                    <text class="step-time text-sm text-lightText">已加入: {{item.maxBCount}}</text>
+                    <text class="iconfont icon-wode1 text-sm text-lightText margin-left"></text>
+                    <text class="step-time text-sm text-lightText">空位: {{item.maxACount - item.maxBCount}}</text>
+                </view>
+            </view>
+            <view class="entry">
+                <view class="btn margin-bottom-sm" bindtap="watchRoom" data-roomid="{{item.roomid}}" data-password="{{item.password}}" data-roomname="{{item.title}}" data-people="{{item.maxACount}}">
+                    <image src="/images/icon/watch.png" class="btn-bg" />
+                </view>
+                <view class="btn" wx:if="{{tabIndex !== 1}}" bindtap="againstRoom" data-roomid="{{item.roomid}}" data-password="{{item.password}}" data-roomname="{{item.title}}" data-people="{{item.maxACount}}">
+                    <image src="/images/icon/against.png" class="btn-bg" />
+                </view>
+            </view>
+        </view>
+        <view class="text-text text-sm no-more" wx:if="{{noMore}}">没有更多了</view>
+        <view class="empty text-center margin-top-xxl" wx:if="{{cardList.length === 0}}">暂时没有任何房间</view>
+    </scroll-view>
+</scroll-view>
+<model show="{{showModel}}" class="model" cancatch="{{false}}">
+    <view class="title">输入房间密码</view>
+    <view class="input-box text-text">
+        <input value="{{roomSecret}}" bindinput="inputSecret" class="input"/>
+    </view>
+    <view class="footer flex justify-around align-center">
+        <view class="btn text-center" bindtap="cancelSecret">取消</view>
+        <view class="btn text-center" bindtap="submitSecret">确定</view>
+    </view>
+</model>
+<loading show="{{showLoading}}"></loading>

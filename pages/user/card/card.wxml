@@ -1,0 +1,17 @@
+<custom isBack="{{true}}" backText="我的卡包"></custom>
+<image class="bg-img" src="/images/bg.jpg" />
+<view class="content flex flex-wrap justify-between">
+    <view class="card margin-bottom flex direction-column justify-between" wx:for="{{cardList}}" wx:key="index">
+        <image class="card-bg" src="/images/card/{{item.src}}.jpg" />
+        <view class="name text-white text-cut">{{item.title}}</view>
+        <view class="teacher flex align-center">
+            <view class="avatar">
+                <image class="img" src="{{item.avatar}}" />
+            </view>
+            <view class="nickname margin-left text-white text-cut">{{item.nickName}}</view>
+        </view>
+        <view class="time text-cut text-white" wx:if="{{!item.isMan}}">{{item.beginTime || '有效期'}}至{{item.endTime}}</view>
+        <view class="time text-cut text-white" wx:else>ID:{{item.userId}}</view>
+    </view>
+    <view class="empty" wx:if="{{showEmpty}}">暂无任何卡券</view>
+</view>

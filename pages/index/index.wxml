@@ -1,0 +1,27 @@
+<view style="height: 100vh; overflow: hidden;">
+  <image class="bg-img" src="/images/bg.jpg" />
+  <custom isBack="{{false}}"></custom>
+  <wheel tabbarHeight="{{tabbarHeight}}" wx:if="{{PageCur=='wheel'}}"></wheel>
+  <event wx:if="{{PageCur=='event'}}"></event>
+  <user wx:if="{{PageCur=='user'}}"></user>
+  <view class="tabbar" id="tabbar">
+    <view class="action" bindtap="NavChange" data-cur="wheel">
+      <view class="icon-image {{PageCur=='wheel'?'animation-click':''}}">
+        <image src="/images/tabbar/wheel{{PageCur=='wheel'?'_cur':''}}.png"></image>
+      </view>
+      <view class="{{PageCur=='wheel'?'text-theme':'text-darkText'}}">车轮战</view>
+    </view>
+    <view class="action" bindtap="NavChange" data-cur="event">
+      <view class="icon-image {{PageCur=='event'?'animation-click':''}}">
+        <image src="/images/tabbar/event{{PageCur=='event'?'_cur':''}}.png"></image>
+      </view>
+      <view class="{{PageCur=='event'?'text-theme':'text-darkText'}}">赛事</view>
+    </view>
+    <view class="action" bindtap="NavChange" data-cur="user">
+      <view class="icon-image {{PageCur=='user'?'animation-click':''}}">
+        <image src="/images/tabbar/user{{PageCur=='user'?'_cur':''}}.png"></image>
+      </view>
+      <view class="{{PageCur=='user'?'text-theme':'text-darkText'}}">我的</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+.custom {
+    overflow: hidden;
+    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))
+}
+.bar {
+    display: flex;
+    position: fixed;
+    margin-left: 40rpx;
+    align-items: flex-end;
+}
+.bar .name {
+    font-size: 36rpx;
+    color: #CDB68A;
+}
+.action .back {
+    width: 50rpx;
+    height: 50rpx;
+    vertical-align: text-bottom;
+}
+.action .backText {
+    font-size: 32rpx;
+    color: #CDB68A;
+    margin-left: 20rpx;
+}
+.content .logo {
+    width: 36rpx;
+    height: 36rpx;
+    vertical-align: text-bottom;
+    margin-right: 10rpx;
+}

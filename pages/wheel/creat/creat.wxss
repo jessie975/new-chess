@@ -1,0 +1,109 @@
+.container {
+    width: 90%;
+    margin: 40rpx auto;
+    background: rgba(132, 120, 90, 0.4);
+    padding: 30rpx;
+}
+
+.container>view {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .input {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5rpx;
+    flex: 1;
+}
+
+.container .textarea {
+    height: 150rpx;
+    padding: 10rpx 30rpx;
+}
+
+.container .people-number {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container .password-btn {
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    border: 2px solid #CDB68A;
+    position: relative;
+}
+
+.container .can-password {
+    width: 25rpx;
+    height: 25rpx;
+    border-radius: 50%;
+    background-color: #CDB68A;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container .people-number .number {
+    display: flex;
+}
+
+.container .people-number image {
+    width: 35rpx;
+    height: 35rpx;
+}
+
+.container .can-switch {
+    align-items: flex-end;
+}
+
+.container .switch switch {
+    transform: scale(0.8);
+}
+
+.can-watch-box {
+    border: 2px solid #CDB68A;
+}
+
+.no-watch-box {
+    border: 2px solid #84775A;
+}
+
+.container .switch-btn {
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+}
+
+.can-watch-btn {
+    background-color: #CDB68A;
+    margin-left: 5rpx;
+}
+
+.no-watch-btn {
+    background-color: #84775A;
+    margin-left: 58rpx;
+}
+
+.container .host,
+.container .custom {
+    justify-content: space-around;
+}
+
+.container .time {
+    padding: 10rpx 30rpx;
+}
+
+.choose-border {
+    border: 1px solid #CDB68A;
+    border-radius: 10rpx;
+}
+
+.submit {
+    padding: 20rpx;
+    position: absolute;
+    bottom: 60rpx;
+    left: 50%;
+    transform: translateX(-50%);
+}

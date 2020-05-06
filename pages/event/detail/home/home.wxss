@@ -1,0 +1,7 @@
+.tab {
+    width: 80%;
+    margin: 40rpx auto 20rpx;
+}
+.scrollPage {
+    height: 100%;
+}

@@ -1,0 +1,77 @@
+<view class="detail flex justify-center">
+    <view class="img border radius">
+        <!-- <image src="{{content.imgUrl}}" /> -->
+        <image src="/images/chess.jpeg" />
+    </view>
+    <view class="text margin-left-lg flex direction-column justify-around">
+        <view class="title text-bold text-white text-lg">{{match.matchname}}</view>
+        <view class="host-box">
+            <text class="host text-white text-sm radius">主办方</text>
+            <text class="text-white margin-left">{{match.sponsor}}</text>
+        </view>
+    </view>
+</view>
+<view class="rule flex justify-between">
+    <view class="integral text-center">
+        <view class="title text-white">积分规则</view>
+        <view class="integral-list flex justify-around margin-top-sm">
+            <view class="yes">
+                <view class="text-white">胜</view>
+                <view class="text-white">{{match.victoryscore}}</view>
+            </view>
+            <view class="no">
+                <view class="text-white">负</view>
+                <view class="text-white">{{match.defeatscore}}</view>
+            </view>
+            <view class="average">
+                <view class="text-white">平</view>
+                <view class="text-white">{{match.drawscore}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="line margin-top-sm"></view>
+    <view class="time text-center">
+        <view class="title text-white">计时规则</view>
+        <view class="time-list flex justify-around margin-top-sm">
+            <view class="game text-center">
+                <view class="text-white">局时</view>
+                <view class="text-white">{{match.gametime / 60}}分钟</view>
+            </view>
+            <view class="no text-center">
+                <view class="text-white">步时</view>
+                <view class="text-white">
+                    {{match.steptime > 60 ? match.steptime / 60 + '分钟': match.steptime + '秒'}}
+                </view>
+            </view>
+            <view class="average text-center">
+                <view class="text-white">加秒</view>
+                <view class="text-white">{{match.addsecond}}秒</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="people text-white">
+    <view class="title margin-bottom-sm margin-left-xl">报名人数：{{match.minenrollment}}/{{match.maxenrollment}}</view>
+    <scroll-view scroll-x="{{true}}" class="container">
+        <view class="item text-center margin-right" wx:for="{{userList}}" style="display: inline-block;">
+            <view class="avatar border">
+                <image style="width: 100%; height: 100%;" src="{{item.avatar}}"/>
+            </view>
+            <view class="nickname text-sm text-theme text-cut">{{item.nickname}}</view>
+        </view>
+    </scroll-view>
+</view>
+<view class="declare text-center">
+    <view class="title text-white text-lg">比赛说明</view>
+    <view class="content text-white margin-top">{{match.matchintroduce}}</view>
+</view>
+<view class="apply text-center">
+    <view class="time-cut text-theme">
+        <text class="text-df">距离截止时间还有：</text>
+        <text class="text-green">{{clock}}</text>
+    </view>
+    <view class="border radius text-center submit margin-bottom">
+        <text class="text-lg text-theme" decode="{{true}}">我&emsp;要&emsp;报&emsp;名</text>
+    </view>
+</view>
+<loading show="{{showLoading}}"></loading>

@@ -1,0 +1,27 @@
+<scroll-view class="scrollPage">
+    <view class="tab">
+        <navigator width="{{600}}" navigator="{{navigator}}" class="navigator" bind:tabSelect="tabSelect"></navigator>
+    </view>
+    <swiper class="card-swiper" autoplay="true" circular="true" previous-margin="30rpx" next-margin="30rpx" wx:if="{{list.length}}" current="0">
+        <swiper-item wx:for="{{list}}" wx:key="index" bindtap="jumpDetail" data-id="{{item.idMatchmng}}">
+            <view class="swiper-item item bg-color padding-lg flex direction-column align-center">
+                <view class="chess-img">
+                    <image src="/images/chess.jpeg" />
+                </view>
+                <view class="content">
+                    <view class="title text-xl text-bold text-text text-cut">
+                        {{item.matchname}}
+                    </view>
+                    <view class="people flex justify-between margin-tb">
+                        <text class="number text-lg text-darkText">报名人数：{{item.minenrollment}}/{{item.maxenrollment}}</text>
+                        <view class="state padding-lr radius text-white" wx:if="{{tabIndex !== 2}}">{{tabIndex === 1 ? '对战中' : '报名中'}}</view>
+                    </view>
+                    <view class="host text-lightText">主办方：{{item.sponsor}}</view>
+                    <view class="time-cut text-lightText">报名截止时间：{{item.signendtime}}</view>
+                </view>
+            </view>
+        </swiper-item>
+    </swiper>
+    <view class="empty text-white" wx:if="{{showMyEmpty && tabIndex === 2}}">您暂时还没有任何比赛~快去参加吧</view>
+</scroll-view>
+<loading show="{{showLoading}}"></loading>

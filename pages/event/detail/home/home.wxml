@@ -1,0 +1,12 @@
+<view style="height: 100vh; overflow: hidden;">
+    <custom isBack="{{true}}" backText="赛事详情"></custom>
+    <image class="bg-img" src="/images/bg.jpg" />
+    <scroll-view scroll-y class="scrollPage">
+        <view class="tab" id="navigator">
+            <navigator width="{{600}}" navigator="{{navigator}}" class="navigator" bind:tabSelect="tabSelect"></navigator>
+        </view>
+        <introduce wx:if="{{tabType === 'introduce'}}" matchid="{{matchid}}"></introduce>
+        <timeTable wx:if="{{tabType === 'timeTable'}}" matchid="{{matchid}}" navigatorHieght="{{navigatorHieght}}"></timeTable>
+        <range wx:if="{{tabType === 'range'}}" matchid="{{matchid}}"></range>
+    </scroll-view>
+</view>

@@ -1,0 +1,86 @@
+<image class="home-bg" src="/images/bg.jpg" />
+<view class="page">
+  
+  <view class="header" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class="content" style="top:{{StatusBar}}px;">
+      <text class="header-title">京华象棋</text>
+    </view>
+  </view>
+  
+
+  <view class="btns">
+
+    <button class="btn-item" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      <image class="btn-item__bg" src="/images/row_card_bg.jpg" />
+      <view class="btn-item__main">
+        <image class="btn-item__icon" src="/images/btn_wheel.png" />
+        <text class="btn-item__title">象棋车轮战</text>
+      </view>
+      <text class="btn-item__desc">一对N的象棋对弈，让你轻松实现“百人斩”！</text>
+    </button>
+
+    <button class="btn-item" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      <image class="btn-item__bg" src="/images/row_card_bg.jpg" />
+      <view class="btn-item__main">
+        <image class="btn-item__icon" src="/images/btn_race.png" />
+        <text class="btn-item__title">象棋比赛</text>
+      </view>
+      <text class="btn-item__desc">公平的、专业的象棋线上赛事</text>
+    </button>
+
+
+  </view>
+
+  <view class="list">
+    <text class="list-title">线上陪练</text>
+
+    <view class="list-content">
+
+      <view class="list-item" catchtap="onRouterB">
+        <image class="list-item__bg" src="/images/col_card_bg.jpg" />
+
+        <view class="list-item__main">
+          <image class="list-main__avatar" src="/images/rg.jpg" />
+          <text class="list-main__name">任刚</text>
+        </view>
+
+        <text class="list-item__desc">北京大学硕士研究生毕业，天天象棋主播赛冠军</text>
+      </view>
+
+      <view class="list-item" catchtap="onRouterB">
+        <image class="list-item__bg" src="/images/col_card_bg.jpg" />
+
+        <view class="list-item__main">
+          <image class="list-main__avatar" src="/images/wyq.jpg" />
+          <text class="list-main__name">王亚琦</text>
+        </view>
+
+        <text class="list-item__desc">北京大学毕业，全国威凯杯冠军，象棋国家大师</text>
+      </view>
+
+      <view class="list-item" catchtap="onRouterB">
+        <image class="list-item__bg" src="/images/col_card_bg.jpg" />
+
+        <view class="list-item__main">
+          <image class="list-main__avatar" src="/images/lwc.jpg" />
+          <text class="list-main__name">刘威辰</text>
+        </view>
+
+        <text class="list-item__desc">清华大学毕业，清华大学象棋队前队长，现新东方教师</text>
+      </view>
+
+      <view class="list-item" catchtap="onRouterB">
+        <image class="list-item__bg" src="/images/col_card_bg.jpg" />
+
+        <view class="list-item__main">
+          <image class="list-main__avatar" src="/images/hjw.jpg" />
+          <text class="list-main__name">胡鉴闻</text>
+        </view>
+
+        <text class="list-item__desc">清华大学在读，校队主力</text>
+      </view>
+
+    </view>
+  </view>
+
+</view>

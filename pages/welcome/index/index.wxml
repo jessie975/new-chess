@@ -1,0 +1,11 @@
+
+<view class="home-page">
+<image class="home-bg" src="/images/welcome_bg.jpg" />
+</view>
+
+
+<view class="content">
+<image class="jiang" src="/images/jiang.png" />
+</view>
+
+

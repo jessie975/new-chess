@@ -1,0 +1,25 @@
+.tabbar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    min-height: 100rpx;
+    background: linear-gradient(360deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    padding-bottom: 20rpx;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1024;
+}
+.tabbar .action {
+    flex: 1;
+    text-align: center;
+}
+
+.tabbar .action .icon-image {
+    margin-bottom: 10rpx;
+}
+
+.tabbar .action .icon-image image {
+    width: 50rpx;
+    height: 50rpx;
+}

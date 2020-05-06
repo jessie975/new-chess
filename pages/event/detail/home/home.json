@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "introduce": "../introduce/introduce",
+    "timeTable": "../timeTable/timeTable",
+    "range": "../range/range"
+  }
+}

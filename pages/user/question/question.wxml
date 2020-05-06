@@ -1,0 +1,8 @@
+<custom isBack="{{true}}" backText="常见问题"></custom>
+<image class="bg-img" src="/images/bg.jpg" />
+<view class="container text-white">
+    <view class="item margin-bottom" wx:for="{{list}}" wx:key="index">
+        <view class="title margin-bottom-sm text-lg"><text class="iconfont icon-question text-theme text-xxl margin-right-sm"></text>{{item.question}}</view>
+        <view class="answer text-theme margin-left-xl">{{item.answer}}</view>
+    </view>
+</view>

@@ -1,0 +1,5 @@
+<view class="model" wx:if="{{show}}" bindtap="closeModel">
+    <view class="dialog">
+        <slot></slot>
+    </view>
+</view>

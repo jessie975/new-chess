@@ -1,0 +1,80 @@
+@import '/style/main.wxss';
+@import '/style/iconfont.wxss';
+
+.swiper {
+    width: 90%;
+    height: 180rpx;
+    margin: 20rpx auto;
+    overflow: hidden;
+}
+.tab {
+    padding: 0 35rpx;
+}
+.tab .creat-room, .tab .search-room {
+    width: 65rpx;
+    height: 65rpx;
+}
+.tab .icon {
+    width: 100%;
+    height: 100%;
+}
+.card-list {
+    width: 90%;
+    margin: 20rpx auto;
+    padding: 16rpx;
+    overflow: hidden;
+}
+.card-list .no-more {
+    position: absolute;
+    left: 50%;
+    bottom: 30rpx;
+    transform: translateX(-50%);
+}
+.card-container {
+    width: 100%;
+    height: 180rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-container .content {
+    flex-grow: 1;
+    margin-left: 15rpx;
+}
+.card-container .img {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.card-container .img .avatar {
+    width: 100%;
+    height: 100%;
+}
+.card-container .content .label {
+    background-color: rgba(85, 62, 56, 0.8);
+    padding: 0 10rpx;
+    border-radius: 5rpx;
+    font-size: 20rpx;
+}
+.card-container .entry .btn{
+    width: 150rpx;
+    height: 55rpx;
+}
+.card-container .entry .btn-bg {
+    width: 100%;
+    height: 100%;
+}
+.model .input-box {
+    width: 90%;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin: 30rpx auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0 20rpx;
+    border-radius: 20rpx;
+}
+.model .input-box .input {
+    width: 100%;
+    height: 100%;
+}

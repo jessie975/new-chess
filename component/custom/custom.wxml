@@ -1,0 +1,12 @@
+<view class="custom" style="height:{{CustomBar}}px">
+    <view class="bar" style="height:{{CustomBar - StatusBar}}px; margin-top:{{StatusBar}}px;">
+        <view class="action" bindtap="BackPage" wx:if="{{isBack}}">
+            <image src="/images/icon/back.png" class="back" />
+            <text class="backText">{{backText}}</text>
+        </view>
+        <view class="content" style="top:{{StatusBar}}px" wx:else>
+            <image src="/images/icon/logo.png" class="logo" />
+            <text class="name">京华象棋</text>
+        </view>
+    </view>
+</view>

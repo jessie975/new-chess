@@ -1,0 +1,11 @@
+<scroll-view scroll-y class="scroll-view text-white">
+    <!-- <scroll-view scroll-x="{{true}}" class="title-container flex" enable-flex>
+        <view class="title" wx:for="{{title}}" wx:key="index">{{item}}</view>
+    </scroll-view> -->
+    <scroll-view scroll-x class="nav margin-top" scroll-with-animation scroll-left="{{scrollLeft}}">
+        <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key="index">
+            <view wx:for="{{item}}" wx:for-item="value">{{value}}</view>
+        </view>
+    </scroll-view>
+</scroll-view>
+<loading show="{{showLoading}}"></loading>

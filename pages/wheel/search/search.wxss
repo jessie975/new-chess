@@ -1,0 +1,78 @@
+.search {
+    width: 90%;
+    height: 60rpx;
+    margin: 30rpx auto;
+}
+
+.search .input {
+    width: 80%;
+    height: 100%;
+    background-color: rgba(132, 120, 90, 0.4);
+}
+
+.search .btn {
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.search .btn .icon {
+    width: 100%;
+    height: 100%;
+}
+
+.result {
+    width: 90%;
+    margin: 20rpx auto;
+}
+
+.list-container {
+    width: 90%;
+    margin: 20rpx auto;
+    padding: 16rpx;
+}
+
+.card-container {
+    width: 100%;
+    height: 180rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-container .content {
+    flex-grow: 1;
+    margin-left: 15rpx;
+}
+
+.card-container .img {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.card-container .img image {
+    width: 100%;
+    height: 100%;
+}
+
+.card-container .content .label-container {
+    display: flex;
+}
+
+.card-container .content .label-container view {
+    background-color: rgba(85, 62, 56, 0.8);
+    padding: 0 10rpx;
+    border-radius: 5rpx;
+    font-size: 20rpx;
+}
+
+.card-container .entry view {
+    width: 150rpx;
+    height: 55rpx;
+}
+
+.card-container .entry view image {
+    width: 100%;
+    height: 100%;
+}

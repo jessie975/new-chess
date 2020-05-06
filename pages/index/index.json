@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "wheel": "/pages/wheel/home/home",
+    "event": "/pages/event/home/home",
+    "user": "/pages/user/home/home"
+  }
+}

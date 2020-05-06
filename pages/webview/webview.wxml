@@ -1,0 +1,2 @@
+<web-view src="{{url}}" ></web-view>
+<!-- <web-view src="www.baidu.com" /> -->

@@ -1,0 +1,37 @@
+<view class="header flex justify-between" id="time">
+    <view class="time text-white">时间：{{time}}</view>
+    <view class="state text-white">{{state}}</view>
+</view>
+<scroll-view scroll-y class="content" style="height: {{height - 35}}px">
+    <view class="flex flex-wrap justify-between">
+        <view class="item margin-bottom" wx:for="{{eventList}}" wx:key="index">
+            <image class="bg-img" src="/images/chess.jpeg" />
+            <view class="player one flex justify-end align-center">
+                <text class="name text-white text-cut margin-right-sm">{{item.userIdBlack}}</text>
+                <view class="avatar">
+                    <image src="{{item.userAvatarBlack}}" />
+                </view>
+            </view>
+            <view class="player two flex align-center">
+                <view class="avatar">
+                    <image src="{{item.userAvatarRed}}" />
+                </view>
+                <text class="name text-white text-cut margin-left-sm">{{item.userIdRed}}</text>
+            </view>
+        </view>
+    </view>
+</scroll-view>
+<view class="footer flex justify-between align-center" id="footer">
+    <view class="btn text-center">
+        <image class="btn-bg" src="/images/icon/btn-bg.png" />
+        <text class="text-white">上一轮</text>
+    </view>
+    <view class="centen">
+        <text class="text-white" decode="{{true}}">第{{1}}轮&emsp;&emsp;&emsp;共{{1}}轮</text>
+    </view>
+    <view class="btn text-center">
+        <image class="btn-bg" src="/images/icon/btn-bg.png" />
+        <text class="text-white">下一轮</text>
+    </view>
+</view>
+<loading show="{{showLoading}}"></loading>

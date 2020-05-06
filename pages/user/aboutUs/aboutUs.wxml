@@ -1,0 +1,2 @@
+<custom isBack="{{true}}" backText="关于我们"></custom>
+<image class="bg-img" src="/images/bg.jpg" />

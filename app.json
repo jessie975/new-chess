@@ -1,0 +1,24 @@
+{
+  "pages":[
+    "pages/welcome/index/index",
+    "pages/index/index",
+    "pages/event/detail/home/home",
+    "pages/user/card/card",
+    "pages/user/question/question"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "京华象棋",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white"
+  },
+  "usingComponents": {
+    "custom": "/component/custom/custom",
+    "navigator": "/component/navigator/navigator",
+    "model": "/component/model/model",
+    "loading": "/component/loading/loading"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

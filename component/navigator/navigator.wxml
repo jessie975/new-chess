@@ -1,0 +1,12 @@
+<view class="container" style="width: {{width}}rpx;">
+    <image class="bg-img" src="/images/icon/tab.png" />
+    <view 
+        class="item {{TabCur === index ? 'text-text' : 'text-darkText'}}" 
+        wx:for="{{navigator}}"
+        wx:key="index"
+        data-id="{{index}}"
+        bindtap="tabSelect">
+        {{item}}
+        <image  class="move-bg" src="/images/icon/choosed.png" wx:if="{{TabCur === index}}"/>
+    </view>
+</view>

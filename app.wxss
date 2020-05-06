@@ -1,0 +1,7 @@
+@import '/style/main.wxss';
+@import "/style/animation.wxss";
+@import '/style/iconfont.wxss';
+
+.scrollPage {
+  height: 100vh;
+}
