@@ -1,6 +1,5 @@
 <view class="header flex justify-between" id="time">
-    <view class="time text-white">时间：{{time}}</view>
-    <view class="state text-white">{{state}}</view>
+    <view class="time text-white">结束时间：{{roundList[roundIndex].endtime}}</view>
 </view>
 <scroll-view scroll-y class="content" style="height: {{height - 35}}px">
     <view class="flex flex-wrap justify-between">
@@ -22,14 +21,14 @@
     </view>
 </scroll-view>
 <view class="footer flex justify-between align-center" id="footer">
-    <view class="btn text-center">
+    <view class="btn text-center" bindtap="beforeMatch">
         <image class="btn-bg" src="/images/icon/btn-bg.png" />
         <text class="text-white">上一轮</text>
     </view>
     <view class="centen">
-        <text class="text-white" decode="{{true}}">第{{1}}轮&emsp;&emsp;&emsp;共{{1}}轮</text>
+        <text class="text-white" decode="{{true}}">第{{roundIndex + 1}}轮&emsp;&emsp;&emsp;共{{roundList.length}}轮</text>
     </view>
-    <view class="btn text-center">
+    <view class="btn text-center" bindtap="nextMatch">
         <image class="btn-bg" src="/images/icon/btn-bg.png" />
         <text class="text-white">下一轮</text>
     </view>

@@ -29,23 +29,61 @@ Component({
     page: '3',
     sumPage: '7',
     eventList: [],
-    showLoading: true
+    showLoading: true,
+    roundList: [],
+    roundIndex: 0
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    getTimeTable() {
+    getTimeTable(roundIndex) {
       api.getTimeTable({
-        matchId: 1,//this.data.matchid,
-        roundno: 1
+        matchId: 1, //this.data.matchid,
+        roundno: roundIndex + 1
       }).then(res => {
         console.log("getTimeTable -> res", res)
         this.setData({
           eventList: res.data.msg
         })
       })
+    },
+    getTimeTableMatch() {
+      api.getTimeTableMatch({
+        matchId: 1
+      }).then(res => {
+        console.log("getTimeTableMatch -> res", res)
+        this.setData({
+          roundList: res.data.msg
+        })
+      })
+    },
+    beforeMatch() {
+      const {
+        roundIndex
+      } = this.data
+      console.log("beforeMatch -> roundIndex", roundIndex)
+      if (roundIndex > 0) {
+        this.getTimeTable(roundIndex - 1)
+        this.setData({
+          roundIndex: roundIndex - 1
+        })
+      }
+    },
+    nextMatch() {
+      const {
+        roundIndex,
+        roundList
+      } = this.data
+      console.log("nextMatch -> roundIndex", roundIndex)
+      if (roundIndex < roundList.length - 1) {
+        this.getTimeTable(roundIndex + 1)
+        this.setData({
+          roundIndex: roundIndex + 1
+        })
+      }
+
     },
     getTimeHeight() {
       return new Promise(resolve => {
@@ -83,7 +121,8 @@ Component({
 
   lifetimes: {
     ready() {
-      this.getTimeTable()
+      this.getTimeTable(0)
+      this.getTimeTableMatch()
       this.setData({
         showLoading: false
       })

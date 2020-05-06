@@ -1,6 +1,5 @@
 <view class="detail flex justify-center">
     <view class="img border radius">
-        <!-- <image src="{{content.imgUrl}}" /> -->
         <image src="/images/chess.jpeg" />
     </view>
     <view class="text margin-left-lg flex direction-column justify-around">

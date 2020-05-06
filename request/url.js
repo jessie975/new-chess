@@ -30,6 +30,9 @@ module.exports = {
     getTimeTable: {
         url: '/wx/roundtime/getMatchRoundUser?matchId=${matchId}&roundno=${roundno}'
     },
+    getTimeTableMatch: {
+        url: '/wx/roundtime/getMatchRoundtime?matchId=${matchId}'
+    },
     getEventRange: {
         url: '/wx/match/matchRanking'
     },
