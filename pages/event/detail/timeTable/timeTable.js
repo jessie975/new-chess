@@ -1,4 +1,6 @@
 import api from '../../../../request/index'
+import router from '../../../../utils/router'
+import $ from '../../../../utils/util'
 const app = getApp()
 Component({
   /**
@@ -7,6 +9,9 @@ Component({
   properties: {
     matchid: {
       type: [Number]
+    },
+    matchname: {
+      type: [String]
     },
     navigatorHieght: {
       type: [Number],
@@ -51,12 +56,24 @@ Component({
     },
     getTimeTableMatch() {
       api.getTimeTableMatch({
-        matchId: 1
+        matchId: this.data.matchid
       }).then(res => {
         this.setData({
           roundList: res.data.msg
         })
       })
+    },
+    jumpToWenView(e) {
+      const roomid = e.currentTarget.dataset.id
+      if (roomid === '') {
+        $.tip('对局未在进行中')
+      } else {
+        api.jumpWatch({
+          roomid
+        }).then(() => {
+          router.jumpToWebView(roomid, this.data.roomname, 1, 'comm_audience')
+        })
+      }
     },
     beforeMatch() {
       const {

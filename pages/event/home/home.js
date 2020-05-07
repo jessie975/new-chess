@@ -23,17 +23,21 @@ Component({
   methods: {
     jumpDetail(e) {
       const eventid = e.currentTarget.dataset.id
+      const eventname = e.currentTarget.dataset.name
       wx.navigateTo({
         url: `/pages/event/detail/home/home`,
-        success: function(res) {
+        success(res) {
           res.eventChannel.emit('acceptDataFromOpenerPage', {
-            eventid
+            eventid,
+            eventname
           })
         }
       })
     },
     tabSelect(e) {
-      this.setData({ showLoading: true })
+      this.setData({
+        showLoading: true
+      })
       const index = e.detail
       if (index === 0) {
         this.getList('SIGN_UP', 0)
@@ -69,7 +73,6 @@ Component({
         pageSize: 10
       }).then(res => {
         const list = res.data.msg.resultList
-        console.log('getList -> list', list)
         if (list.length) {
           this.setData({
             showEventEmpty: true

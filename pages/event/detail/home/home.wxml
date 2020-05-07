@@ -6,7 +6,7 @@
             <navigator width="{{600}}" navigator="{{navigator}}" class="navigator" bind:tabSelect="tabSelect"></navigator>
         </view>
         <introduce wx:if="{{tabType === 'introduce'}}" matchid="{{matchid}}"></introduce>
-        <timeTable wx:if="{{tabType === 'timeTable'}}" matchid="{{matchid}}" navigatorHieght="{{navigatorHieght}}"></timeTable>
+        <timeTable wx:if="{{tabType === 'timeTable'}}" matchid="{{matchid}}" navigatorHieght="{{navigatorHieght}}" matchname="{{matchname}}"></timeTable>
         <range wx:if="{{tabType === 'range'}}" matchid="{{matchid}}"></range>
     </scroll-view>
 </view>

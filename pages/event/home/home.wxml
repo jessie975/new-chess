@@ -3,7 +3,7 @@
         <navigator width="{{600}}" navigator="{{navigator}}" class="navigator" bind:tabSelect="tabSelect"></navigator>
     </view>
     <swiper class="card-swiper" autoplay="true" circular="true" previous-margin="30rpx" next-margin="30rpx" wx:if="{{list.length}}" current="0">
-        <swiper-item wx:for="{{list}}" wx:key="index" bindtap="jumpDetail" data-id="{{item.idMatchmng}}">
+        <swiper-item wx:for="{{list}}" wx:key="index" bindtap="jumpDetail" data-id="{{item.idMatchmng}}" data-name="{{item.matchname}}">
             <view class="swiper-item item bg-color padding-lg flex direction-column align-center">
                 <view class="chess-img">
                     <image src="/images/chess.jpeg" />

@@ -3,7 +3,7 @@
 </view>
 <scroll-view scroll-y class="content" style="height: {{height - 35}}px">
     <view class="flex flex-wrap justify-between">
-        <view class="item margin-bottom" wx:for="{{eventList}}" wx:key="index">
+        <view class="item margin-bottom" wx:for="{{eventList}}" wx:key="index" bindtap="jumpToWenView" data-id="{{item.roomId}}">
             <image class="bg-img" src="/images/chess.jpeg" />
             <view class="player one flex justify-end align-center">
                 <text class="name text-white text-cut margin-right-sm">{{item.userIdBlack}}</text>
