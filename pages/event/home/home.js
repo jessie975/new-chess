@@ -26,7 +26,7 @@ Component({
       const eventid = e.currentTarget.dataset.id
       wx.navigateTo({
         url: `/pages/event/detail/home/home`,
-        success: function (res) {
+        success: function(res) {
           res.eventChannel.emit('acceptDataFromOpenerPage', {
             eventid
           })
@@ -34,7 +34,7 @@ Component({
       })
     },
     tabSelect(e) {
-      this.setData({showLoading: true})
+      this.setData({ showLoading: true })
       const index = e.detail
       if (index === 0) {
         this.getList('SIGN_UP', 0)
@@ -66,10 +66,11 @@ Component({
     getList(status, page) {
       api.getEventList({
         page,
-        matchState: status
+        matchState: status,
+        pageSize: 10
       }).then(res => {
         const list = res.data.msg.resultList
-        console.log("getList -> list", list)
+        console.log('getList -> list', list)
         if (list.length) {
           this.setData({
             showEventEmpty: true

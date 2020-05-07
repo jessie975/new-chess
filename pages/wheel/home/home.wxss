@@ -68,16 +68,39 @@
     width: 100%;
     height: 100%;
 }
-.model .input-box {
-    width: 90%;
-    height: 60rpx;
+.password-input {
+    width: 520rpx;
+    height: 60rpx!important;
     line-height: 60rpx;
     margin: 30rpx auto;
     background-color: rgba(255, 255, 255, 0.5);
-    padding: 0 20rpx;
-    border-radius: 20rpx;
+    outline: none;
+    border: 0;
+    font-size: 28rpx;
+    text-align: center;
+    border-radius: 6rpx;
 }
-.model .input-box .input {
+
+.has-share .close {
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+}
+
+.has-share .btn{
+    width: 40%;
+    height: 70rpx;
+    overflow: hidden;
+    position: relative;
+    margin: 20rpx auto;
+}
+
+.has-share .btn .btn-img {
     width: 100%;
     height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
 }

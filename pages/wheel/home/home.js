@@ -1,7 +1,6 @@
 import router from '../../../utils/router'
 import api from '../../../request/index'
 import $ from '../../../utils/util'
-
 const app = getApp()
 
 Component({
@@ -31,10 +30,49 @@ Component({
     roomid: '',
     roomname: '',
     people: '',
-    entryType: ''
+    entryType: '',
+    hasShare: false,
+    room: null
   },
 
   methods: {
+    close() {
+      app.globalData.hasShare = false
+      app.globalData.room = {}
+      this.setData({
+        hasShare: false,
+        room: {}
+      })
+    },
+    async jumpToShareWebview(e) {
+      const { room: shareRoomInfo } = this.data
+      const type = e.currentTarget.dataset.type
+      const { data: { msg: { room } } } = await api.getRoomInfo({ roomid: shareRoomInfo.room_id })
+      const event = {
+        currentTarget: {
+          dataset: {
+            roomid: room.roomid,
+            password: room.password,
+            roomname: room.title,
+            people: room.maxACount,
+            type
+          }
+        }
+      }
+      this.setData({
+        hasShare: false
+      })
+      this.jumpRoom(event)
+    },
+    initShare() {
+      console.log('app.globalData', app.globalData)
+      this.setData({
+        hasShare: app.globalData.hasShare,
+        room: app.globalData.room
+      })
+      app.globalData.hasShare = false
+      app.globalData.room = {}
+    },
     creat() {
       router.push('creat')
     },
@@ -57,7 +95,7 @@ Component({
       const url = e.currentTarget.dataset.url
       wx.navigateTo({
         url: '/pages/webview/webview',
-        success: function (res) {
+        success: function(res) {
           res.eventChannel.emit('acceptDataFromOpenerPage', {
             url
           })
@@ -72,7 +110,7 @@ Component({
       } else if (index === 1) {
         list = await this.getCardList('fighting', 0)
       } else {
-        //TODO: 其他tab栏接口未知
+        // TODO: 其他tab栏接口未知
         list = []
       }
       this.setData({
@@ -86,7 +124,7 @@ Component({
         pagesize: 10,
         status
       }).then(res => {
-        console.log("getCardList -> res", res)
+        console.log('getCardList -> res', res)
         return res.data.msg.resultList
       }).catch(err => {
         $.tip(err.data.msg)
@@ -100,7 +138,7 @@ Component({
       } else if (this.data.tabIndex === 1) {
         list = await this.getCardList('fighting', page)
       } else {
-        //TODO: 其他tab栏接口未知
+        // TODO: 其他tab栏接口未知
         list = []
       }
       if (list.length === 0) {
@@ -129,6 +167,56 @@ Component({
         }).exec()
       })
     },
+    /**
+     * 断线重连的检测
+     */
+    async checkRoom() {
+      const that = this
+      const { data: { msg: { user = '', roomid = '' } } } = await api.getMyRoom()
+      if (user && roomid) {
+        wx.showModal({
+          title: '提示',
+          content: '是否回到上次断线的房间',
+          async success(res) {
+            if (res.confirm) {
+              const { data: { msg: { room } } } = await api.getRoomInfo({ roomid })
+              console.log('log => : success -> room', room)
+              let type = ''
+              if (user === 'fight' || user === 'owner') {
+                type = 'comm_fight'
+              }
+              if (user === 'audience') {
+                type = 'comm_audience'
+              }
+              if (type !== '') {
+                const event = {
+                  currentTarget: {
+                    dataset: {
+                      roomid,
+                      password: room.password,
+                      roomname: room.title,
+                      people: room.maxACount,
+                      type
+                    }
+                  }
+                }
+                that.jumpRoom(event)
+              } else {
+                $.tip('获取重连类型失败')
+              }
+            } else if (res.cancel) {
+              api.leaveMyRoom({ roomid }) // 退出房间
+              const { data: { cardList } } = that
+              if (user === 'owner') {
+                that.setData({
+                  cardList: cardList.filter(item => (item.roomid !== roomid))
+                })
+              }
+            }
+          }
+        })
+      }
+    },
     jumpRoom(e) {
       const {
         roomid,
@@ -141,7 +229,7 @@ Component({
         this.setData({
           showModel: true
         })
-        // TODO:有密码时加入观战房间
+
         this.setData({
           roomid,
           roomname,
@@ -149,8 +237,37 @@ Component({
           entryType: type
         })
       } else {
-        router.jumpToWebView(roomid, roomname, people, type)
+        if (type === 'comm_audience') {
+          this.jumpWatch(roomid, roomname, people)
+        }
+        if (type === 'comm_fight') {
+          this.jumpFight(roomid, roomname, people)
+        }
       }
+    },
+    jumpWatch(roomid, roomname, people, password = '') {
+      api.jumpWatch({
+        roomid,
+        password
+      }).then(res => {
+        if (res.data.code === 0) {
+          router.jumpToWebView(roomid, roomname, people, 'comm_audience')
+        } else {
+          $.tip(res.data.msg)
+        }
+      })
+    },
+    jumpFight(roomid, roomname, people, password = '') {
+      api.jumpFight({
+        roomid,
+        password
+      }).then(res => {
+        if (res.data.code === 0) {
+          router.jumpToWebView(roomid, roomname, people, 'comm_fight')
+        } else {
+          $.tip(res.data.msg)
+        }
+      })
     },
     submitSecret() {
       const {
@@ -163,16 +280,12 @@ Component({
       if (roomSecret === '') {
         $.tip('密码不能为空~')
       } else {
-        api.jumpWatch({
-          roomid,
-          password: roomSecret
-        }).then(res => {
-          if (res.data.code === 0) {
-            router.jumpToWebView(roomid, roomname, people, entryType)
-          } else {
-            $.tip(res.data.msg)
-          }
-        })
+        if (entryType === 'comm_audience') {
+          this.jumpWatch(roomid, roomname, people, roomSecret)
+        }
+        if (entryType === 'comm_fight') {
+          this.jumpFight(roomid, roomname, people, roomSecret)
+        }
       }
     },
     inputSecret(e) {
@@ -194,7 +307,7 @@ Component({
         screenHeight,
         CustomBar
       } = app.store
-      // 40: 
+      // 40:
       // - #swiper margin上下各10 = 20
       // - .card-list margin上下各10 = 20
       // 20 + 20 = 40
@@ -212,6 +325,8 @@ Component({
         cardList: await this.getCardList('preparing', 0),
         showLoading: false
       })
+      this.initShare()
+      this.checkRoom()
     }
   }
 })

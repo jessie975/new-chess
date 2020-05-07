@@ -1,5 +1,5 @@
 import api from '../../../../request/index'
-const app = getApp();
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -43,7 +43,7 @@ Component({
         matchId: this.data.matchid,
         roundno: roundIndex + 1
       }).then(res => {
-      console.log("getTimeTable -> res", res)
+        console.log('getTimeTable -> res', res)
         this.setData({
           eventList: res.data.msg
         })
@@ -62,7 +62,7 @@ Component({
       const {
         roundIndex
       } = this.data
-      console.log("beforeMatch -> roundIndex", roundIndex)
+      console.log('beforeMatch -> roundIndex', roundIndex)
       if (roundIndex > 0) {
         this.getTimeTable(roundIndex - 1)
         this.setData({
@@ -75,14 +75,13 @@ Component({
         roundIndex,
         roundList
       } = this.data
-      console.log("nextMatch -> roundIndex", roundIndex)
+      console.log('nextMatch -> roundIndex', roundIndex)
       if (roundIndex < roundList.length - 1) {
         this.getTimeTable(roundIndex + 1)
         this.setData({
           roundIndex: roundIndex + 1
         })
       }
-
     },
     getTimeHeight() {
       return new Promise(resolve => {
@@ -107,7 +106,7 @@ Component({
         screenHeight,
         CustomBar
       } = app.store
-      // 40: 
+      // 40:
       // - #navigator margin上下各40 20 = 60
       // - #content margin上下各20 = 40
       // 60 + 40 = 100

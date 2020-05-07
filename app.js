@@ -1,66 +1,34 @@
-//app.js
+// app.js
+
 App({
   initUiGlobal() {
     wx.getSystemInfo({
       success: e => {
+        const clientHeight = e.windowHeight
+
         const { statusBarHeight: StatusBar, screenHeight, windowWidth } = e
         this.store.StatusBar = StatusBar
+        this.globalData.StatusBar = StatusBar
+
         this.store.screenHeight = screenHeight
         this.store.windowWidth = windowWidth
         const capsule = wx.getMenuButtonBoundingClientRect()
         if (capsule) {
           this.store.Custom = capsule
           this.store.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight
+
+          this.globalData.Custom = capsule
+          this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight
         } else {
           this.store.CustomBar = StatusBar + 50
+          this.globalData.CustomBar = e.statusBarHeight + 50
         }
+        this.globalData.screenHeight = clientHeight - e.statusBarHeight - this.globalData.CustomBar
       }
     })
   },
-  onLoad(option) {
-    console.log("onLoad -> option", option)
-    console.log(option)
-  },
-  onLaunch: function (option) {
-  console.log("option", option)
-    const {room_id, room_name, room_people_num} = option.query
-    this.globalData.hasShare = !!Object.keys(option.query).length
-    this.globalData.room = {
-      room_id,
-      room_name,
-      room_people_num
-    }
+  onLaunch: function(option) {
     this.initUiGlobal()
-
-    // 获取系统信息
-    wx.getSystemInfo({
-      success: e => {
-        const clientHeight = e.windowHeight
-        const rpx2px = clientHeight / 750
-        this.globalData.StatusBar = e.statusBarHeight;
-        let capsule = wx.getMenuButtonBoundingClientRect();
-        if (capsule) {
-          this.globalData.Custom = capsule;
-          this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
-        } else {
-          this.globalData.CustomBar = e.statusBarHeight + 50;
-        }
-        this.globalData.screenHeight = clientHeight - e.statusBarHeight  - this.globalData.CustomBar 
-        this.globalData.rpx2px = rpx2px
-      }
-    })
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // console.log(res)
-      }
-    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -85,7 +53,7 @@ App({
   globalData: {
     userInfo: null,
     tabbarHeight: 0,
-    hasShare: {}
+    hasShare: false
   },
   store: {
     StatusBar: 0,

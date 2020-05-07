@@ -7,12 +7,7 @@
     z-index: 1110;
     outline: 0;
     text-align: center;
-    -ms-transform: scale(1.185);
-    transform: scale(1.185);
-    backface-visibility: hidden;
-    perspective: 2000rpx;
     background: rgba(0, 0, 0, 0.6);
-    transition: all 0.3s ease-in-out 0s;
 }
 
 .dialog {
