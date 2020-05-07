@@ -30,6 +30,7 @@ Component({
       return api.getEventDetail({
         matchId: this.data.matchid
       }).then(res => {
+        console.log('getMatch -> res', res)
         return res.data.msg.match
       })
     },
@@ -73,22 +74,51 @@ Component({
       })
     },
     signUp() {
+      const that = this
       if (this.data.stop) {
         $.tip('赛事已经截止咯~')
       } else if (this.data.hasSignUp) {
         $.tip('您已经报名了')
       } else {
-        api.signUpEvent({
-          matchId: this.data.matchid
-        }).then(res => {
-          if (res.data.code === 0) {
-            $.tip('报名成功~')
-            this.setData({
-              hasSignUp: true
-            })
+        wx.showModal({
+          title: '提示',
+          content: '报名后不可以取消，是否确认报名？',
+          success(res) {
+            if (res.confirm) {
+              const userId = wx.getStorageSync('user_id')
+              api.signUpEvent({
+                userKeys: userId,
+                matchId: that.data.matchid
+              }).then(e => {
+                // TODO:后端接口修改完毕需要测试成功的code是不是0
+                if (e.data.code === 0) {
+                  $.tip('报名成功~')
+                  that.setData({
+                    hasSignUp: true
+                  })
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
           }
         })
       }
+    },
+    getHasSignUp() {
+      return api.hasSignUpEvent({
+        matchId: this.data.matchid
+      }).then(e => {
+        return e.data.msg
+      })
+    },
+    enterEvent() {
+      api.enterEvent({
+        matchId: this.data.matchid
+      }).then(res => {
+        // TODO:成功进入的code是多少?成功进入的话跳转webview
+        $.tip(res.data.msg)
+      })
     }
   },
   lifetimes: {
@@ -102,7 +132,8 @@ Component({
         match: matchIntroduce,
         showLoading: false,
         clock: this.getClock(timeDiff),
-        userList
+        userList,
+        hasSignUp: await this.getHasSignUp()
       })
     }
   }

@@ -67,12 +67,15 @@
     <view class="content text-white margin-top">{{match.matchintroduce}}</view>
 </view>
 <view class="apply text-center">
-    <view class="time-cut text-theme">
+    <view class="time-cut text-theme" wx:if="{{!hasSignUp}}">
         <text class="text-df">距离截止时间还有：</text>
         <text class="text-green">{{clock}}</text>
     </view>
-    <view class="border radius text-center submit margin-bottom" bindtap="signUp">
+    <view class="border radius text-center submit margin-bottom" bindtap="signUp" wx:if="{{!hasSignUp}}">
         <text class="text-lg text-theme" decode="{{true}}">我&emsp;要&emsp;报&emsp;名</text>
+    </view>
+    <view class="border radius text-center submit margin-bottom" bindtap="enterEvent" wx:if="{{hasSignUp}}">
+        <text class="text-lg text-theme" decode="{{true}}">进&emsp;入&emsp;比&emsp;赛</text>
     </view>
 </view>
 <loading show="{{showLoading}}"></loading>

@@ -29,6 +29,10 @@ module.exports = {
     url: '/wx/match/getMatchDtl'
   },
   signUpEvent: {
+    url: '/wx-api/payOrderMatchH5',
+    method: 'post'
+  },
+  hasSignUpEvent: {
     url: '/wx/match/isEnrollMatch?matchId=${matchId}'
   },
   getTimeTable: {
@@ -79,5 +83,8 @@ module.exports = {
   leaveMyRoom: {
     url: '/wx/chess/room/leaveRoom/${roomid}',
     method: 'post'
+  },
+  enterEvent: {
+    url: '/wx/match/matchEnter?matchId=${matchId}'
   }
 }
