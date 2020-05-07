@@ -1,4 +1,3 @@
-import router from '../../../utils/router'
 import api from '../../../request/index'
 
 Component({

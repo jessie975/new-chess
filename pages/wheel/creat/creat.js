@@ -1,7 +1,7 @@
 import api from '../../../request/index'
 import $ from '../../../utils/util'
 import router from '../../../utils/router'
-const app = getApp();
+const app = getApp()
 Page({
   data: {
     height: app.globalData.screenHeight,
@@ -46,6 +46,7 @@ Page({
     } = this.data
     const type = e.currentTarget.dataset.type
     const value = e.detail.value
+    // eslint-disable-next-line eqeqeq
     if (type === 'people' && value == peoplePicker.length - 1) {
       this.setData({
         showLimit: true
@@ -74,9 +75,9 @@ Page({
     let PeopleBase = 2
     let gameBase = 5
     let addBase = 0
-    let peoplePicker = []
-    let gameTimePicker = []
-    let addTimePicker = []
+    const peoplePicker = []
+    const gameTimePicker = []
+    const addTimePicker = []
     while (PeopleBase < roomPersonLimit + 1) {
       peoplePicker.push(PeopleBase)
       PeopleBase++
@@ -144,7 +145,7 @@ Page({
     const playerStep = stepTimePicker[customStepTime]
     const ownerStepTime = hostStepTime > 1 ? Number(parseInt(hostStep) * 60) : Number(parseInt(hostStep))
     const playerStepTime = customStepTime > 1 ? Number(parseInt(playerStep) * 60) : Number(parseInt(playerStep))
-    let data = {
+    const data = {
       beginTime,
       canWatch,
       nickname,
@@ -156,7 +157,7 @@ Page({
         ownerStepTime,
         playerMatchTime: Number(gameTimePicker[customGameTime] * 60),
         playerStepAddTime: Number(addTimePicker[customAddTime]),
-        playerStepTime,
+        playerStepTime
       },
       title
     }

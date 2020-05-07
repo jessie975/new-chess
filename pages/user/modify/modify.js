@@ -11,13 +11,15 @@ Page({
     })
   },
   submit() {
-    const {nickname} = this.data
-    if(nickname === '') {
+    const {
+      nickname
+    } = this.data
+    if (nickname === '') {
       $.tip('修改内容不能为空')
     } else {
       api.modifyUserInfo({
         nickname
-      }).then(res => {
+      }).then(() => {
         $.tip('修改成功')
         setTimeout(() => {
           router.pop()

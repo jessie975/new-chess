@@ -6,21 +6,21 @@ Page({
       MONTH_FREE: '银',
       TEACHER: '蓝',
       MASTER: '棕',
-      PLUS_ROOM: '金',
+      PLUS_ROOM: '金'
     },
     titleMap: {
       CARNIVAL: '嘉年华',
       MONTH_FREE: '尊享无限卡',
       TEACHER: '',
       MASTER: '',
-      PLUS_ROOM: '尊享扩容卡',
+      PLUS_ROOM: '尊享扩容卡'
     },
     cardList: [],
     showEmpty: false
   },
   getCard() {
     api.getUserGoodsInfo().then(res => {
-      console.log("getCard -> res", res)
+      console.log('getCard -> res', res)
       const list = res.data.msg
       if (list) {
         list.forEach(item => {
@@ -38,7 +38,7 @@ Page({
       }
     })
   },
-  onLoad: function (options) {
+  onLoad() {
     this.getCard()
   }
 })

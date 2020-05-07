@@ -22,16 +22,16 @@ Component({
     list: [],
     showLoading: true,
     titleMap: {
-      rivalPoints: "对手分",
-      cumulativePoints: "累进分",
-      middleRivalPoints: "中间对手分",
-      deductRivalPoints: "扣除对手分",
-      winPoints: "胜局",
-      rivalMostPoints: "对手最高名次",
-      blackPoints: "后手局数",
-      blackWinPoints: "对手分",
-      username: "用户名",
-      sortSingle: "排名"
+      rivalPoints: '对手分',
+      cumulativePoints: '累进分',
+      middleRivalPoints: '中间对手分',
+      deductRivalPoints: '扣除对手分',
+      winPoints: '胜局',
+      rivalMostPoints: '对手最高名次',
+      blackPoints: '后手局数',
+      blackWinPoints: '对手分',
+      username: '用户名',
+      sortSingle: '排名'
     }
   },
 
@@ -47,9 +47,9 @@ Component({
       })
     },
     replaceUnderLine(str) {
-      let ret = str.toLowerCase()
+      const ret = str.toLowerCase()
       return ret.replace(/_([\w+])/g, (all, letter) => {
-        return letter.toUpperCase();
+        return letter.toUpperCase()
       })
     },
     getData() {
@@ -58,7 +58,7 @@ Component({
       }).then(res => {
         const {
           fractions = [],
-            rankingUser = []
+          rankingUser = []
         } = res.data.msg
         if (rankingUser.length !== 0) {
           const {

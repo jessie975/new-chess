@@ -13,25 +13,25 @@ Component({
   data: {
     userInfo: {},
     entryList: [{
-        name: '我的卡包',
-        type: 'userCardInfo'
-      },
-      {
-        name: '修改资料',
-        type: 'userInfoModify'
-      },
-      {
-        name: '联系客服',
-        type: 'contact'
-      },
-      {
-        name: '常见问题',
-        type: 'userQuestion'
-      },
-      {
-        name: '关于我们',
-        type: 'userAboutUs'
-      }
+      name: '我的卡包',
+      type: 'userCardInfo'
+    },
+    {
+      name: '修改资料',
+      type: 'userInfoModify'
+    },
+    {
+      name: '联系客服',
+      type: 'contact'
+    },
+    {
+      name: '常见问题',
+      type: 'userQuestion'
+    },
+    {
+      name: '关于我们',
+      type: 'userAboutUs'
+    }
     ],
     showModel: false,
     showLoading: true,
@@ -66,7 +66,10 @@ Component({
     },
     getContact() {
       api.getContact().then(res => {
-        const {contactPhone, contactWx} = res.data.msg
+        const {
+          contactPhone,
+          contactWx
+        } = res.data.msg
         this.setData({
           phone: contactPhone,
           wechat: contactWx
@@ -78,15 +81,15 @@ Component({
       const data = type === 'phone' ? this.data.phone : this.data.wechat
       wx.setClipboardData({
         data,
-        success: function (res) {
+        success() {
           wx.getClipboardData({
-            success: function (res) {
+            success() {
               $.tip('复制成功')
             }
           })
         }
       })
-    },
+    }
   },
   lifetimes: {
     ready() {
@@ -95,8 +98,8 @@ Component({
     }
   },
   pageLifetimes: {
-    show: function () {
+    show() {
       this.getUserInfo()
-    },
+    }
   }
 })

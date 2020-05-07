@@ -1,6 +1,6 @@
 import $ from '../../../utils/util'
 import api from '../../../request/index'
-const app = getApp();
+const app = getApp()
 Page({
 
   /**
@@ -35,7 +35,7 @@ Page({
         pagesize: 10,
         searchkey: inputValue
       }).then(res => {
-        console.log("search -> res", res)
+        console.log('search -> res', res)
         const list = res.data.msg.resultList
         if (list) {
           this.setData({

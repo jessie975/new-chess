@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 module.exports = {
   getSwiperList: {
     url: '/ytkc_advert/advert/advertList'
