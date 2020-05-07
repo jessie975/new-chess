@@ -1,5 +1,6 @@
 import api from '../../../../request/index'
 import $ from '../../../../utils/util'
+import router from '../../../../utils/router'
 Component({
   /**
    * 组件的属性列表
@@ -7,6 +8,9 @@ Component({
   properties: {
     matchid: {
       type: [Number]
+    },
+    matchname: {
+      type: [String]
     }
   },
 
@@ -90,7 +94,6 @@ Component({
                 userKeys: userId,
                 matchId: that.data.matchid
               }).then(e => {
-                // TODO:后端接口修改完毕需要测试成功的code是不是0
                 if (e.data.code === 0) {
                   $.tip('报名成功~')
                   that.setData({
@@ -116,8 +119,11 @@ Component({
       api.enterEvent({
         matchId: this.data.matchid
       }).then(res => {
-        // TODO:成功进入的code是多少?成功进入的话跳转webview
-        $.tip(res.data.msg)
+        if (res.data.code !== 0) {
+          $.tip(res.data.msg)
+        } else {
+          router.jumpToWebView(this.data.matchid, this.data.matchname, 1, 'race_audience')
+        }
       })
     }
   },
