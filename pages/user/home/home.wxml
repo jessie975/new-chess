@@ -11,11 +11,11 @@
     <view class="number-area bg-color radius padding-lg">
         <view class="sum flex justify-around margin-bottom">
             <view class="integral">
-                <text class="text-sm margin-right-sm text-lightText">积分</text>
+                <text class="margin-right-sm text-lightText">积分</text>
                 <text class="text-xxl  text-text">{{userInfo.points || 0}}</text>
             </view>
             <view class="win-rate">
-                <text class="text-sm margin-right-sm text-lightText">胜率</text>
+                <text class="margin-right-sm text-lightText">胜率</text>
                 <text class="text-xxl  text-text">{{userInfo.winPercent || 0}}%</text>
             </view>
         </view>

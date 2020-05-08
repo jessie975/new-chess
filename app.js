@@ -27,7 +27,7 @@ App({
       }
     })
   },
-  onLaunch: function(option) {
+  onLaunch() {
     this.initUiGlobal()
     // 获取用户信息
     wx.getSetting({

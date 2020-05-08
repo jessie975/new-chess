@@ -99,6 +99,14 @@ Component({
                   that.setData({
                     hasSignUp: true
                   })
+                  // 重新拉取报名人数
+                  api.getMatchEnrollpsn({
+                    matchId: that.data.matchid
+                  }).then(res => {
+                    that.setData({
+                      userList: res.data.msg
+                    })
+                  })
                 }
               })
             } else if (res.cancel) {

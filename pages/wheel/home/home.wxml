@@ -21,7 +21,7 @@
                 <image src="{{item.avatar}}" class="avatar" />
             </view>
             <view class="content">
-                <view class="room-name text-cut text-bold text-df text-text">{{item.title}}</view>
+                <view class="room-name text-cut text-bold text-df text-text"><text wx:if="{{item.password}}" class="iconfont icon-mima text-text margin-right-sm"></text>{{item.title}}</view>
                 <view class="label text-white margin-right-sm text-sm" wx:if="{{item.tag !== 'comm'}}">
                     {{item.tag}}
                 </view>
