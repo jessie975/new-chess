@@ -193,7 +193,7 @@ Component({
                   currentTarget: {
                     dataset: {
                       roomid,
-                      password: room.password,
+                      password: false, // room.password,
                       roomname: room.title,
                       people: room.maxACount,
                       type
