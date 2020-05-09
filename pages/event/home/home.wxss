@@ -4,16 +4,52 @@
     width: 80%;
     margin: 40rpx auto;
 }
-.card-swiper .chess-img {
-    width: 100%;
-    height: 65%;
-    margin: 0 auto 30rpx;
-    border-radius: 20rpx;
+
+.card-list {
+    width: 90%;
+    margin: 20rpx auto;
+    padding: 16rpx;
     overflow: hidden;
 }
-.swiper-item .content .state {
-    background-color: rgba(132, 120, 90, 0.4);
+
+.card-container {
+    width: 100%;
+    height: 180rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.card-container .img {
+    width: 130rpx;
+    height: 130rpx;
+    border-radius: 15rpx;
+}
+
+.card-container .content {
+    margin-left: 20rpx;
+}
+
+.card-container .state {
+    width: 150rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    background-color: #D4CAA8;
+    border-radius: 10rpx;
+    align-self: flex-start;
+}
+
+.card-container .hidden {
+    visibility: hidden;
+}
+
+.no-more {
+    width: 100%;
+    margin: 10rpx auto;
+    text-align: center;
+}
+
 .empty {
     width: 100%;
     height: 300rpx;

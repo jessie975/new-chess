@@ -32,7 +32,8 @@ Component({
     people: '',
     entryType: '',
     hasShare: false,
-    room: null
+    room: null,
+    refresh: false
   },
 
   methods: {
@@ -130,7 +131,7 @@ Component({
         $.tip(err.data.msg)
       })
     },
-    async getList() {
+    async getMoreList() {
       const page = this.data.page + 1
       let list = []
       if (this.data.tabIndex === 0) {
@@ -151,6 +152,40 @@ Component({
         page
       })
     },
+    async refreshList() {
+      let list = []
+      if (this.data.tabIndex === 0) {
+        list = await this.getCardList('preparing', 0)
+      } else if (this.data.tabIndex === 1) {
+        list = await this.getCardList('fighting', 0)
+      } else {
+        // TODO: 其他tab栏接口未知
+        list = []
+      }
+      this.setData({
+        list
+      })
+    },
+    // 下拉
+    // TODO:你有时间就研究下这里为啥不加setTimeout就没办法更改refresh的值吧
+    // 这样有一个延迟体验不太好，我看了一下好像是这个下拉一直触发下拉被中止的事件bindrefresherabort
+    onPulling() {
+      setTimeout(() => {
+        this.setData({
+          refresh: true
+        })
+      }, 500)
+    },
+
+    onRefresh() {
+      this.refreshList()
+      setTimeout(() => {
+        this.setData({
+          refresh: false
+        })
+      }, 1000)
+    },
+    //  ------------------------------------------------------------------------
     getSwiperHeight() {
       return new Promise(resolve => {
         const query = wx.createSelectorQuery().in(this)

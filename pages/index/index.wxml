@@ -2,7 +2,7 @@
   <image class="bg-img" src="/images/bg.jpg" />
   <custom isBack="{{false}}"></custom>
   <wheel tabbarHeight="{{tabbarHeight}}" wx:if="{{PageCur=='wheel'}}"></wheel>
-  <event wx:if="{{PageCur=='event'}}"></event>
+  <event tabbarHeight="{{tabbarHeight}}" wx:if="{{PageCur=='event'}}"></event>
   <user wx:if="{{PageCur=='user'}}"></user>
   <view class="tabbar" id="tabbar">
     <view class="action" bindtap="NavChange" data-cur="wheel">

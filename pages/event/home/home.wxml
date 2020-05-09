@@ -1,27 +1,49 @@
 <scroll-view class="scrollPage">
-    <view class="tab">
+    <view class="tab" id="tab">
         <navigator width="{{600}}" navigator="{{navigator}}" class="navigator" bind:tabSelect="tabSelect"></navigator>
     </view>
-    <swiper class="card-swiper" autoplay="true" circular="true" previous-margin="30rpx" next-margin="30rpx" wx:if="{{list.length}}" current="0">
-        <swiper-item wx:for="{{list}}" wx:key="index" bindtap="jumpDetail" data-id="{{item.idMatchmng}}" data-name="{{item.matchname}}">
-            <view class="swiper-item item bg-color padding-lg flex direction-column align-center">
-                <view class="chess-img">
-                    <image src="/images/chess.jpeg" />
+    <scroll-view 
+        class="card-list bg-color radius" 
+        scroll-y="{{true}}" 
+        style="height: {{listHeight}}px;" 
+        refresher-enabled="{{true}}" 
+        refresher-default-style="white" 
+        refresher-background="#D4CAA8" 
+        refresher-triggered="{{refresh}}" 
+        bindrefresherpulling="onPulling" 
+        bindrefresherrefresh="onRefresh"
+        bindscrolltolower="getMoreList">
+        <view class="card-container {{index === list.length - 1 ? '' : 'border-bottom'}}" wx:for="{{list}}" wx:key="index" bindtap="jumpDetail" data-id="{{item.idMatchmng}}" data-name="{{item.matchname}}">
+            <image src="/images/chess.jpeg" class="img border" />
+            <view class="content">
+                <view class="room-name text-cut text-bold text-text">
+                    <text wx:if="{{item.password}}" class="iconfont icon-mima text-text margin-right-sm"></text>
+                    {{item.matchname}}
                 </view>
-                <view class="content">
-                    <view class="title text-xl text-bold text-text text-cut">
-                        {{item.matchname}}
-                    </view>
-                    <view class="people flex justify-between margin-tb">
-                        <text class="number text-lg text-darkText">报名人数：{{item.enrollpsnCount}}/{{item.maxenrollment}}</text>
-                        <view class="state padding-lr radius text-white" wx:if="{{tabIndex !== 2}}">{{tabIndex === 1 ? '对战中' : '报名中'}}</view>
-                    </view>
-                    <view class="host text-lightText">主办方：{{item.sponsor}}</view>
-                    <view class="time-cut text-lightText">报名截止时间：{{item.signendtime}}</view>
+                <view class="people text-df flex text-cut text-text">
+                    报名人数：{{item.enrollpsnCount}}/{{item.maxenrollment}}
+                </view>
+                <view class="text-sm text-lightText flex text-cut">主办方：{{item.sponsor}}</view>
+                <view class="text-sm text-lightText flex text-cut">
+                    报名截止时间：{{item.signendtime}}
                 </view>
             </view>
-        </swiper-item>
-    </swiper>
-    <view class="empty text-white" wx:if="{{showMyEmpty && tabIndex === 2}}">您暂时还没有任何比赛~快去参加吧</view>
+            <view class="state text-df text-cut text-text margin-top {{tabIndex === 2 ? 'hidden' : ''}}">
+                {{statusMap[item.matchState]}}
+            </view>
+        </view>
+        <view class="text-text text-sm no-more" wx:if="{{noMore && tabIndex === 0 && list.length}}">
+            没有更多了
+        </view>
+        <view class="text-text text-sm no-more" wx:if="{{noMore && tabIndex === 1 && list.length}}">
+            没有更多了
+        </view>
+        <view class="text-text text-sm no-more" wx:if="{{noMore && tabIndex === 2 && list.length}}">
+            没有更多了
+        </view>
+        <view class="empty text-center margin-top-xxl" wx:if="{{list.length === 0 && tabIndex === 0 }}">暂时没有任何赛事</view>
+        <view class="empty text-center margin-top-xxl" wx:if="{{list.length === 0 && tabIndex === 1 }}">暂时没有对战中的赛事</view>
+        <view class="empty text-center margin-top-xxl" wx:if="{{list.length === 0 && tabIndex === 2 }}">您还没有参与任何赛事哦~赶快去参加吧</view>
+    </scroll-view>
 </scroll-view>
 <loading show="{{showLoading}}"></loading>
