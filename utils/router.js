@@ -48,7 +48,8 @@ export default {
         res.eventChannel.emit('acceptDataFromOpenerPage', {
           url,
           title: roomName,
-          roomPeopleNum
+          roomPeopleNum,
+          enterMode
         })
       }
     })

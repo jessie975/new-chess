@@ -1,4 +1,4 @@
-<scroll-view class="scrollPage">
+<view class="scrollPage">
     <view class="swiper radius border" id="swiper">
         <swiper class="screen-swiper" circular="true" autoplay="true" interval="5000" duration="500">
             <swiper-item wx:for="{{swiperList}}" wx:key="index" bindtap="jumpWebview" data-url="{{item.jumpurl}}">
@@ -18,12 +18,12 @@
     <scroll-view 
         class="card-list bg-color radius" 
         scroll-y="{{true}}" 
-        style="height: {{listHeight}}px;" 
+        style="height: {{listHeight}}px;"
         refresher-enabled="{{true}}" 
+        refresher-threshold="{{100}}"
         refresher-default-style="white" 
         refresher-background="#D4CAA8" 
-        refresher-triggered="{{refresh}}" 
-        bindrefresherpulling="onPulling" 
+        refresher-triggered="{{triggered}}" 
         bindrefresherrefresh="onRefresh"
         bindscrolltolower="getMoreList">
         <view class="card-container {{index === cardList.length - 1 ? '' : 'border-bottom'}}" wx:for="{{cardList}}" wx:key="index">
@@ -79,7 +79,7 @@
             暂时没有任何房间
         </view>
     </scroll-view>
-</scroll-view>
+</view>
 <model show="{{showModel}}" class="model" cancatch="{{false}}">
     <view class="title">输入房间密码</view>
     <input value="{{roomSecret}}" bindinput="inputSecret" class="password-input" />

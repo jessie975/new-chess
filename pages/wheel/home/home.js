@@ -21,7 +21,7 @@ Component({
     navigator: ['准备中', '对战中', '官方'],
     tabIndex: 0,
     cardCur: 0,
-    listHeight: 0,
+    listHeight: 200,
     cardList: [],
     page: 0,
     showModel: false,
@@ -33,7 +33,8 @@ Component({
     entryType: '',
     hasShare: false,
     room: null,
-    refresh: false
+    triggered: false,
+    roomSecret: ''
   },
 
   methods: {
@@ -166,24 +167,12 @@ Component({
         list
       })
     },
-    // 下拉
-    // TODO:你有时间就研究下这里为啥不加setTimeout就没办法更改refresh的值吧
-    // 这样有一个延迟体验不太好，我看了一下好像是这个下拉一直触发下拉被中止的事件bindrefresherabort
-    onPulling() {
-      setTimeout(() => {
-        this.setData({
-          refresh: true
-        })
-      }, 500)
-    },
-
-    onRefresh() {
-      this.refreshList()
-      setTimeout(() => {
-        this.setData({
-          refresh: false
-        })
-      }, 1000)
+    async onRefresh() {
+      if (this._freshing) return
+      this._freshing = true
+      await this.refreshList()
+      this.setData({ triggered: false })
+      this._freshing = false
     },
     //  ------------------------------------------------------------------------
     getSwiperHeight() {
@@ -228,7 +217,7 @@ Component({
                   currentTarget: {
                     dataset: {
                       roomid,
-                      password: false, // room.password,
+                      password: false,
                       roomname: room.title,
                       people: room.maxACount,
                       type
@@ -347,6 +336,7 @@ Component({
       // - .card-list margin上下各10 = 20
       // 20 + 20 = 40
       const listHeight = screenHeight - CustomBar - tabbarHeight - swiperHeight - tabHeight - 40
+      console.log('log => : initUI -> listHeight', listHeight)
       this.setData({
         listHeight
       })

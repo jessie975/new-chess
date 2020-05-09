@@ -23,14 +23,14 @@ Component({
     showMyEmpty: false,
     showEventEmpty: false,
     showLoading: true,
-    listHeight: 0,
+    listHeight: 200,
     statusMap: {
       SIGN_UP: '报名中',
       MATCH_ING: '对战中'
     },
     page: 0,
     noMore: false,
-    refresh: false
+    triggered: false
   },
   methods: {
     jumpDetail(e) {
@@ -114,24 +114,12 @@ Component({
         list
       })
     },
-    // 下拉
-    // TODO:你有时间就研究下这里为啥不加setTimeout就没办法更改refresh的值吧
-    // 这样有一个延迟体验不太好，我看了一下好像是这个下拉一直触发下拉被中止的事件bindrefresherabort
-    onPulling() {
-      setTimeout(() => {
-        this.setData({
-          refresh: true
-        })
-      }, 500)
-    },
-
-    onRefresh() {
-      this.refreshList()
-      setTimeout(() => {
-        this.setData({
-          refresh: false
-        })
-      }, 1000)
+    async onRefresh() {
+      if (this._freshing) return
+      this._freshing = true
+      await this.refreshList()
+      this.setData({ triggered: false })
+      this._freshing = false
     },
     getTabHeight() {
       return new Promise(resolve => {

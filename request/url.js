@@ -12,7 +12,7 @@ module.exports = {
   },
   searchRoom: {
     url: '/wx/chess/room/searchRoom?page=${pageId}&pagesize=${pagesize}&searchKey=${searchKey}',
-    method: 'post'
+    method: 'get'
   },
   jumpWatch: {
     url: '/wx/chess/room/enterAudience/${roomid}',

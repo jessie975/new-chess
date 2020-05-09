@@ -9,8 +9,7 @@
         refresher-enabled="{{true}}" 
         refresher-default-style="white" 
         refresher-background="#D4CAA8" 
-        refresher-triggered="{{refresh}}" 
-        bindrefresherpulling="onPulling" 
+        refresher-triggered="{{triggered}}" 
         bindrefresherrefresh="onRefresh"
         bindscrolltolower="getMoreList">
         <view class="card-container {{index === list.length - 1 ? '' : 'border-bottom'}}" wx:for="{{list}}" wx:key="index" bindtap="jumpDetail" data-id="{{item.idMatchmng}}" data-name="{{item.matchname}}">
