@@ -4,14 +4,17 @@ module.exports = {
     url: '/ytkc_advert/advert/advertList'
   },
   getWheelList: {
-    url: '/wx/chess/room/statusRoom?page=${pageId}&pagesize=${pagesize}&status=${status}'
+    url: '/wx/chess/room/statusRoom?page=${page}&pagesize=${pagesize}&status=${status}'
+  },
+  officialRoom: {
+    url: '/wx/chess/room/officialRoom?page=${page}&pagesize=${pagesize}'
   },
   createRoom: {
     url: '/wx/chess/room/createRoom',
     method: 'post'
   },
   searchRoom: {
-    url: '/wx/chess/room/searchRoom?page=${pageId}&pagesize=${pagesize}&searchKey=${searchKey}',
+    url: '/wx/chess/room/searchRoom?page=${page}&pagesize=${pagesize}&searchKey=${searchKey}',
     method: 'get'
   },
   jumpWatch: {

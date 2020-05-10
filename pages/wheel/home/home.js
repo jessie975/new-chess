@@ -112,12 +112,22 @@ Component({
       } else if (index === 1) {
         list = await this.getCardList('fighting', 0)
       } else {
-        // TODO: 其他tab栏接口未知
-        list = []
+        list = await this.getOfficialList(0)
       }
       this.setData({
         cardList: list,
         tabIndex: index
+      })
+    },
+    getOfficialList(page) {
+      return api.officialRoom({
+        page,
+        pagesize: 10
+      }).then(res => {
+        console.log('getOfficialList -> res', res)
+        return res.data.msg.resultList
+      }).catch(err => {
+        $.tip(err.data.msg)
       })
     },
     getCardList(status, page) {
@@ -140,8 +150,7 @@ Component({
       } else if (this.data.tabIndex === 1) {
         list = await this.getCardList('fighting', page)
       } else {
-        // TODO: 其他tab栏接口未知
-        list = []
+        list = await this.getOfficialList(page)
       }
       if (list.length === 0) {
         this.setData({
@@ -160,8 +169,7 @@ Component({
       } else if (this.data.tabIndex === 1) {
         list = await this.getCardList('fighting', 0)
       } else {
-        // TODO: 其他tab栏接口未知
-        list = []
+        list = await this.getOfficialList(0)
       }
       this.setData({
         list

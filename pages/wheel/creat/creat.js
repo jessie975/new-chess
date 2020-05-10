@@ -11,6 +11,7 @@ Page({
     canWatch: true,
     people: 0,
     timeIndex: null,
+    nickname: '',
     peoplePicker: [],
     gameTimePicker: [],
     stepTimePicker: ['20秒', '40秒', '1分钟', '2分钟', '3分钟', '5分钟', '10分钟', '15分钟', '20分钟'],
@@ -46,12 +47,10 @@ Page({
     } = this.data
     const type = e.currentTarget.dataset.type
     const value = e.detail.value
-    // eslint-disable-next-line eqeqeq
-    if (type === 'people' && value == peoplePicker.length - 1) {
-      this.setData({
-        showLimit: true
-      })
-    }
+    this.setData({
+      // eslint-disable-next-line eqeqeq
+      showLimit: type === 'people' && value == peoplePicker.length - 1
+    })
     this.setData({
       [type]: e.detail.value
     })
@@ -135,9 +134,9 @@ Page({
       addTimePicker,
       showLimit,
       limitNumber,
-      limitReason
+      limitReason,
+      nickname
     } = this.data
-    const nickname = wx.getStorageSync('nickname')
     const title = roomName || nickname + '的房间'
     const summary = roomDetail || '欢迎大家来玩~'
     const beginTime = String($.formatTime(new Date()))
@@ -200,14 +199,15 @@ Page({
 
   getUserIdentity() {
     return api.getUserIdentity().then(res => {
-      return res.data.msg.roomPersonLimit
+      return res.data.msg
     })
   },
 
   async onLoad() {
-    const roomPersonLimit = await this.getUserIdentity()
+    const { roomPersonLimit, nickname } = await this.getUserIdentity()
     this.setData({
-      roomPersonLimit
+      roomPersonLimit,
+      nickname
     })
     this.createData(this.data.roomPersonLimit)
   },
