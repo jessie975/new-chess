@@ -17,10 +17,10 @@ Page({
     stepTimePicker: ['20秒', '40秒', '1分钟', '2分钟', '3分钟', '5分钟', '10分钟', '15分钟', '20分钟'],
     addTimePicker: [],
     hostGameTime: 5,
-    hostStepTime: 0,
+    hostStepTime: 5,
     hostAddTime: 0,
-    customGameTime: 5,
-    customStepTime: 0,
+    customGameTime: 4,
+    customStepTime: 4,
     customAddTime: 0,
     showPassword: false,
     roomPersonLimit: 3,
@@ -156,7 +156,8 @@ Page({
         ownerStepTime,
         playerMatchTime: Number(gameTimePicker[customGameTime] * 60),
         playerStepAddTime: Number(addTimePicker[customAddTime]),
-        playerStepTime
+        playerStepTime,
+        ownerfirst: false
       },
       title
     }
