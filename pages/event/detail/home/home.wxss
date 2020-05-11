@@ -3,5 +3,7 @@
     margin: 40rpx auto 20rpx;
 }
 .scrollPage {
+    margin-top: 20rpx;
+    box-sizing: border-box;
     height: 100%;
 }

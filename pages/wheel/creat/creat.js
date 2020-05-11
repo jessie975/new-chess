@@ -157,7 +157,7 @@ Page({
         playerMatchTime: Number(gameTimePicker[customGameTime] * 60),
         playerStepAddTime: Number(addTimePicker[customAddTime]),
         playerStepTime,
-        ownerfirst: false
+        ownerFirst: false
       },
       title
     }

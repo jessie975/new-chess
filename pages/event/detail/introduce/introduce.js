@@ -11,6 +11,9 @@ Component({
     },
     matchname: {
       type: [String]
+    },
+    matchState: {
+      type: [String]
     }
   },
 

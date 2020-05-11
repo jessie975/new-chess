@@ -32,7 +32,7 @@ module.exports = {
     url: '/wx/match/getMatchDtl'
   },
   signUpEvent: {
-    url: '/wx-api/payOrderMatchH5',
+    url: '/wx-api/payOrderMatchJSAPI',
     method: 'post'
   },
   hasSignUpEvent: {

@@ -9,12 +9,13 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    show_btn: false
+    show_btn: false,
+    enterOptions: null
   },
   initShareData(options) {
     console.log('options!!!', options)
     const { room_id = '', room_name = '', room_people_num = '' } = options
-    app.globalData.hasShare = !!Object.keys(options).length
+    app.globalData.hasShare = !!Object.keys(options).length && options.room_id
     app.globalData.room = {
       room_id: room_id,
       room_name,
@@ -24,6 +25,7 @@ Page({
   onLoad: function(options) {
     // this.getUserInfo(e)// 获取用户信息
     this.initShareData(options)
+    this.setData({ enterOptions: options })
 
     this.login() // 启动时调用登录接口
 
@@ -117,9 +119,28 @@ Page({
                 // wx.redirectTo({
                 //   url: '../webview/webview?base_url=' + base_url + '&token=' + token + '&user_id=' + user_id + '&open_id=' + open_id
                 // })
-                wx.redirectTo({
-                  url: '/pages/index/index'
-                })
+
+                const { enterOptions } = self.data
+                console.log('log => : success -> enterOptions', enterOptions)
+                if (enterOptions.page && enterOptions.page === 'event_detail') {
+                  // matchid: data.eventid,
+                  // matchname: data.eventname,
+                  // matchState: data.state || 'SIGN_UP'
+                  wx.navigateTo({
+                    url: `/pages/event/detail/home/home`,
+                    success(res) {
+                      res.eventChannel.emit('acceptDataFromOpenerPage', {
+                        eventid: enterOptions.matchid,
+                        eventname: enterOptions.matchname,
+                        state: enterOptions.matchState
+                      })
+                    }
+                  })
+                } else {
+                  wx.redirectTo({
+                    url: '/pages/index/index'
+                  })
+                }
               }
               // 如果登录失败，强制使用手机号注册
               else if (r['code'] == 400) {

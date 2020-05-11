@@ -8,7 +8,8 @@ Page({
     tabType: 'introduce',
     matchid: 0,
     navigatorHieght: 0,
-    matchname: ''
+    matchname: '',
+    matchState: 'SIGN_UP'
   },
   tabSelect(e) {
     const index = e.detail
@@ -41,15 +42,27 @@ Page({
     eventChannel.on('acceptDataFromOpenerPage', function(data) {
       that.setData({
         matchid: data.eventid,
-        matchname: data.eventname
+        matchname: data.eventname,
+        matchState: data.state || 'SIGN_UP'
       })
     })
   },
+  async onUnload() {
+    const page = getCurrentPages()
+    if (page.length > 0 && page[0].route === 'pages/welcome/index/index') {
+      wx.redirectTo({
+        url: '/pages/index/index'
+      })
+    }
+  },
   onShareAppMessage() {
+    const { matchid, matchname, matchState } = this.data
+    const path = `/pages/welcome/index/index?page=event_detail&matchid=${matchid}&matchname=${matchname}&matchState=${matchState}`
     return {
-      title: '欢迎来京华象棋',
-      path: '/pages/welcome/index/index',
+      title: `欢迎参加${matchname}比赛`,
+      path,
       imageUrl: '/images/share.jpeg'
     }
   }
+
 })

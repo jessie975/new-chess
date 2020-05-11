@@ -64,9 +64,9 @@
 </view>
 <view class="declare text-center">
     <view class="title text-white text-lg">比赛说明</view>
-    <view class="content text-white margin-top">{{match.matchintroduce}}</view>
+    <view class="content text-white margin-top" style="padding-bottom: 100rpx;">{{match.matchintroduce}}</view>
 </view>
-<view class="apply text-center">
+<view class="apply text-center" wx:if="{{ matchState !== 'MATCH_ING' }}">
     <view class="time-cut text-theme" wx:if="{{!hasSignUp}}">
         <text class="text-df">距离截止时间还有：</text>
         <text class="text-green">{{clock}}</text>

@@ -16,7 +16,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    navigator: ['报名中', '对战中', '我的赛事'],
+    navigator: ['报名中', '进行中', '我的赛事'],
     list: [],
     currentSwiperIndex: 0,
     tabIndex: 0,
@@ -26,7 +26,7 @@ Component({
     listHeight: 200,
     statusMap: {
       SIGN_UP: '报名中',
-      MATCH_ING: '对战中'
+      MATCH_ING: '进行中'
     },
     page: 0,
     noMore: false,
@@ -36,12 +36,15 @@ Component({
     jumpDetail(e) {
       const eventid = e.currentTarget.dataset.id
       const eventname = e.currentTarget.dataset.name
+      const state = e.currentTarget.dataset.state
+
       wx.navigateTo({
         url: `/pages/event/detail/home/home`,
         success(res) {
           res.eventChannel.emit('acceptDataFromOpenerPage', {
             eventid,
-            eventname
+            eventname,
+            state
           })
         }
       })

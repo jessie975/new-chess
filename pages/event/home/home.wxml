@@ -12,7 +12,7 @@
         refresher-triggered="{{triggered}}" 
         bindrefresherrefresh="onRefresh"
         bindscrolltolower="getMoreList">
-        <view class="card-container {{index === list.length - 1 ? '' : 'border-bottom'}}" wx:for="{{list}}" wx:key="index" bindtap="jumpDetail" data-id="{{item.idMatchmng}}" data-name="{{item.matchname}}">
+        <view class="card-container {{index === list.length - 1 ? '' : 'border-bottom'}}" wx:for="{{list}}" wx:key="index" bindtap="jumpDetail" data-id="{{item.idMatchmng}}" data-name="{{item.matchname}}" data-state="{{item.matchState}}">
             <image src="/images/chess.jpeg" class="img border" />
             <view class="content">
                 <view class="room-name text-cut text-bold text-text">
@@ -25,6 +25,12 @@
                 <view class="text-sm text-lightText flex text-cut">主办方：{{item.sponsor}}</view>
                 <view class="text-sm text-lightText flex text-cut">
                     报名截止时间：{{item.signendtime}}
+                </view>
+                <view class="text-sm text-lightText flex text-cut">
+                    比赛开始时间：{{item.matchBegin}}
+                </view>
+                <view class="text-sm text-lightText flex text-cut">
+                    比赛截止时间：{{item.matchEnd}}
                 </view>
             </view>
             <view class="state text-df text-cut text-text margin-top {{tabIndex === 2 ? 'hidden' : ''}}">

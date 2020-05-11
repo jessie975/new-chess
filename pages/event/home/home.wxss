@@ -14,15 +14,15 @@
 
 .card-container {
     width: 100%;
-    height: 180rpx;
+    height: 220rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .card-container .img {
-    width: 130rpx;
-    height: 130rpx;
+    width: 190rpx;
+    height: 180rpx;
     border-radius: 15rpx;
 }
 
