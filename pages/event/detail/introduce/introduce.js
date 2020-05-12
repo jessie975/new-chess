@@ -126,14 +126,33 @@ Component({
         return e.data.msg
       })
     },
+    jumpFight(roomid, roomname) {
+      api.jumpFight({
+        roomid
+      }).then(res => {
+        if (res.data.code === 0) {
+          router.jumpToWebView(roomid, roomname, 1, 'race_fight')
+        } else {
+          $.tip(res.data.msg)
+        }
+      })
+    },
     enterEvent() {
+      // 选手进入比赛的接口参数不对，好像请求流程也不对（房间id怎么会是1位数）
+      // 正确流程提示：请求比赛进入接口，得到房间id，拿房间id请求进入房间接口，请求成功——进入，请求失败——报错
       api.enterEvent({
         matchId: this.data.matchid
       }).then(res => {
+        console.log('log => : enterEvent -> res', res)
         if (res.data.code !== 0) {
           $.tip(res.data.msg)
         } else {
-          router.jumpToWebView(this.data.matchid, this.data.matchname, 1, 'race_audience')
+          const { roomId = '' } = res.data.msg
+          if (roomId !== '') {
+            this.jumpFight(roomId, this.data.matchname)
+          } else {
+            $.tip('比赛尚未开始') // 获取到的roomId为空
+          }
         }
       })
     }
