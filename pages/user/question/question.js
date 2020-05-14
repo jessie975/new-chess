@@ -13,7 +13,7 @@ Page({
   },
   onShareAppMessage() {
     return {
-      title: '欢迎来京华象棋',
+      title: '欢迎使用京华象棋',
       path: '/pages/welcome/index/index',
       imageUrl: '/images/share.jpeg'
     }

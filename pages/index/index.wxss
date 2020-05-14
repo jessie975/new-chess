@@ -4,7 +4,7 @@
     bottom: 0;
     left: 0;
     min-height: 100rpx;
-    padding-bottom: 20rpx;
+    padding-bottom: 10px;
     display: flex;
     justify-content: space-around;
     z-index: 1024;

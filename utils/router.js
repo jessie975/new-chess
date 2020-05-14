@@ -36,7 +36,7 @@ export default {
     })
   },
 
-  jumpToWebView(roomId, roomName, roomPeopleNum, enterMode) {
+  jumpToWebView(roomId, roomName, roomPeopleNum, enterMode, ownerNickname = '') {
     const base_url = 'https://dev.jhbrain.cn/'
     const userId = wx.getStorageSync('user_id')
     const token = wx.getStorageSync('token')
@@ -49,7 +49,8 @@ export default {
           url,
           title: roomName,
           roomPeopleNum,
-          enterMode
+          enterMode,
+          ownerNickname
         })
       }
     })

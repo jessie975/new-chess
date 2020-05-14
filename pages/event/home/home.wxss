@@ -2,12 +2,12 @@
 
 .tab {
     width: 80%;
-    margin: 40rpx auto;
+    margin: 10rpx auto;
 }
 
 .card-list {
     width: 90%;
-    margin: 20rpx auto;
+    margin: 10px auto;
     padding: 16rpx;
     overflow: hidden;
 }
@@ -18,16 +18,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .card-container .img {
-    width: 190rpx;
-    height: 180rpx;
+    width: 164rpx;
+    height: 164rpx;
     border-radius: 15rpx;
 }
 
 .card-container .content {
-    margin-left: 20rpx;
+    margin-right: 100rpx;
 }
 
 .card-container .state {
@@ -37,7 +38,9 @@
     text-align: center;
     background-color: #D4CAA8;
     border-radius: 10rpx;
-    align-self: flex-start;
+    position: absolute;
+    right: 40rpx;
+    top: 0rpx;
 }
 
 .card-container .hidden {

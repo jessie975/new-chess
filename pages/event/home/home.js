@@ -51,7 +51,8 @@ Component({
     },
     async tabSelect(e) {
       this.setData({
-        showLoading: true
+        showLoading: true,
+        noMore: false
       })
       const index = e.detail
       let list = []
@@ -72,6 +73,9 @@ Component({
       return api.getUserEventList({
         page
       }).then(res => {
+        this.setData({
+          noMore: !res.data.msg.more
+        })
         return res.data.msg.resultList
       })
     },
@@ -81,28 +85,28 @@ Component({
         matchState: status,
         pageSize: 10
       }).then(res => {
+        this.setData({
+          noMore: !res.data.msg.more
+        })
         return res.data.msg.resultList
       })
     },
     async getMoreList() {
-      const page = this.data.page + 1
-      let list = []
-      if (this.data.tabIndex === 0) {
-        list = await this.getList('SIGN_UP', page)
-      } else if (this.data.tabIndex === 1) {
-        list = await this.getList('MATCH_ING', page)
-      } else {
-        list = await this.getUserEventList(page)
-      }
-      if (list.length === 0) {
+      if (!this.data.noMore) {
+        const page = this.data.page + 1
+        let list = []
+        if (this.data.tabIndex === 0) {
+          list = await this.getList('SIGN_UP', page)
+        } else if (this.data.tabIndex === 1) {
+          list = await this.getList('MATCH_ING', page)
+        } else {
+          list = await this.getUserEventList(page)
+        }
         this.setData({
-          noMore: true
+          list: [...this.data.list, ...list],
+          page
         })
       }
-      this.setData({
-        list: [...this.data.list, ...list],
-        page
-      })
     },
     async refreshList() {
       let list = []
@@ -138,10 +142,7 @@ Component({
         screenHeight,
         CustomBar
       } = app.store
-      // 50:
-      // - .tab margin上下各20 = 40
-      // - .tabbar margin下10 = 10
-      const listHeight = screenHeight - CustomBar - tabbarHeight - tabHeight - 50
+      const listHeight = screenHeight - CustomBar - tabbarHeight - tabHeight - 32
       this.setData({
         listHeight
       })

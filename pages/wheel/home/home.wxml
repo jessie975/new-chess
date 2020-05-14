@@ -35,9 +35,11 @@
                     <text wx:if="{{item.password}}" class="iconfont icon-mima text-text margin-right-sm"></text>
                     {{item.title}}
                 </view>
-                <view class="label text-white margin-right-sm text-sm" wx:if="{{item.tag !== 'comm'}}">
-                    {{item.tag}}
-                </view>
+                <block wx:for="{{item.tagsX}}" wx:key="j" wx:for-index="j" wx:for-item="tag">
+                    <view class="label text-white margin-right-sm text-sm">
+                        {{tag}}
+                    </view>
+                </block>
                 <view class="time flex text-cut">
                     <view class="game-time text-sm text-lightText">
                         局时:{{item.timeRule.playerMatchTime < 60 ? item.timeRule.playerMatchTime : item.timeRule.playerMatchTime / 60}}分钟
@@ -58,10 +60,10 @@
                 </view>
             </view>
             <view class="entry">
-                <view class="btn margin-bottom-sm" wx:if="{{tabIndex !== 1}}" bindtap="jumpRoom" data-type="comm_fight" data-roomid="{{item.roomid}}" data-password="{{item.password}}" data-roomname="{{item.title}}" data-people="{{item.maxACount}}">
+                <view class="btn margin-bottom-sm" wx:if="{{tabIndex !== 1}}" bindtap="jumpRoom" data-type="comm_fight" data-roomid="{{item.roomid}}" data-password="{{item.password}}" data-roomname="{{item.title}}" data-people="{{item.maxACount}}" data-nickname="{{item.nickname}}">
                     <image src="/images/icon/against.png" class="btn-bg" />
                 </view>
-                <view class="btn" bindtap="jumpRoom" data-type="comm_audience" data-roomid="{{item.roomid}}" data-password="{{item.password}}" data-roomname="{{item.title}}" data-people="{{item.maxACount}}">
+                <view class="btn" bindtap="jumpRoom" data-type="comm_audience" data-roomid="{{item.roomid}}" data-password="{{item.password}}" data-roomname="{{item.title}}" data-people="{{item.maxACount}}" data-nickname="{{item.nickname}}">
                     <image src="/images/icon/watch.png" class="btn-bg" />
                 </view>
             </view>

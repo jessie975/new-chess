@@ -2,7 +2,7 @@
     <custom isBack="{{true}}" backText="搜索房间"></custom>
     <image class="bg-img" src="/images/bg.jpg" />
     <view class="search flex justify-around">
-        <input class="input radius padding-lr text-white" placeholder="房间名、房间id、房主名" placeholder-class="text-lightText" value="{{inputValue}}" bindinput="inputValue" />
+        <input class="input radius padding-lr text-white" placeholder="搜索一下房间名吧" placeholder-class="text-lightText" value="{{inputValue}}" bindinput="inputValue" />
         <view class="btn" bindtap="search">
             <image class="icon" src="/images/icon/search.png" />
         </view>

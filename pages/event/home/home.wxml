@@ -1,3 +1,5 @@
+<wxs module="filter" src="./func.wxs"></wxs>
+
 <scroll-view class="scrollPage">
     <view class="tab" id="tab">
         <navigator width="{{600}}" navigator="{{navigator}}" class="navigator" bind:tabSelect="tabSelect"></navigator>
@@ -27,10 +29,7 @@
                     报名截止时间：{{item.signendtime}}
                 </view>
                 <view class="text-sm text-lightText flex text-cut">
-                    比赛开始时间：{{item.matchBegin}}
-                </view>
-                <view class="text-sm text-lightText flex text-cut">
-                    比赛截止时间：{{item.matchEnd}}
+                    起始时间：{{filter.formatTime(item.matchBegin)}} 至 {{filter.formatTime(item.matchEnd)}}
                 </view>
             </view>
             <view class="state text-df text-cut text-text margin-top {{tabIndex === 2 ? 'hidden' : ''}}">

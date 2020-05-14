@@ -34,10 +34,21 @@ Component({
     hasShare: false,
     room: null,
     triggered: false,
-    roomSecret: ''
+    roomSecret: '',
+    ownerNickname: ''
   },
 
   methods: {
+    makeTags(list) {
+      list.forEach(item => {
+        const tags = []
+        if (item.tag === 'carnival') { tags.push('嘉年华') }
+        const { ownerInfo: { masterFlag, teachFlag, vLabel } } = item
+        if (masterFlag === 1 || teachFlag === 1) { tags.push('付费') }
+        if (vLabel !== '') { tags.push(vLabel) }
+        item.tagsX = tags
+      })
+    },
     close() {
       app.globalData.hasShare = false
       app.globalData.room = {}
@@ -57,7 +68,8 @@ Component({
             password: room.password,
             roomname: room.title,
             people: room.maxACount,
-            type
+            type,
+            nickname: room.nickname
           }
         }
       }
@@ -124,6 +136,7 @@ Component({
         page,
         pagesize: 10
       }).then(res => {
+        this.makeTags(res.data.msg.resultList)
         console.log('getOfficialList -> res', res)
         return res.data.msg.resultList
       }).catch(err => {
@@ -136,6 +149,7 @@ Component({
         pagesize: 10,
         status
       }).then(res => {
+        this.makeTags(res.data.msg.resultList)
         console.log('getCardList -> res', res)
         return res.data.msg.resultList
       }).catch(err => {
@@ -228,7 +242,8 @@ Component({
                       password: false,
                       roomname: room.title,
                       people: room.maxACount,
-                      type
+                      type,
+                      nickname: room.nickname
                     }
                   }
                 }
@@ -255,47 +270,47 @@ Component({
         password,
         roomname,
         people,
-        type
+        type,
+        nickname
       } = e.currentTarget.dataset
-      if (password) {
-        this.setData({
-          showModel: true
-        })
 
+      if (password) {
         this.setData({
           roomid,
           roomname,
           people,
-          entryType: type
+          entryType: type,
+          ownerNickname: nickname,
+          showModel: true
         })
       } else {
         if (type === 'comm_audience') {
-          this.jumpWatch(roomid, roomname, people)
+          this.jumpWatch(roomid, roomname, people, '', nickname)
         }
         if (type === 'comm_fight') {
-          this.jumpFight(roomid, roomname, people)
+          this.jumpFight(roomid, roomname, people, '', nickname)
         }
       }
     },
-    jumpWatch(roomid, roomname, people, password = '') {
+    jumpWatch(roomid, roomname, people, password = '', nickname) {
       api.jumpWatch({
         roomid,
         password
       }).then(res => {
         if (res.data.code === 0) {
-          router.jumpToWebView(roomid, roomname, people, 'comm_audience')
+          router.jumpToWebView(roomid, roomname, people, 'comm_audience', nickname)
         } else {
           $.tip(res.data.msg)
         }
       })
     },
-    jumpFight(roomid, roomname, people, password = '') {
+    jumpFight(roomid, roomname, people, password = '', nickname) {
       api.jumpFight({
         roomid,
         password
       }).then(res => {
         if (res.data.code === 0) {
-          router.jumpToWebView(roomid, roomname, people, 'comm_fight')
+          router.jumpToWebView(roomid, roomname, people, 'comm_fight', nickname)
         } else {
           $.tip(res.data.msg)
         }
@@ -307,16 +322,17 @@ Component({
         roomSecret,
         roomname,
         people,
-        entryType
+        entryType,
+        ownerNickname: nickname
       } = this.data
       if (roomSecret === '') {
         $.tip('密码不能为空~')
       } else {
         if (entryType === 'comm_audience') {
-          this.jumpWatch(roomid, roomname, people, roomSecret)
+          this.jumpWatch(roomid, roomname, people, roomSecret, nickname)
         }
         if (entryType === 'comm_fight') {
-          this.jumpFight(roomid, roomname, people, roomSecret)
+          this.jumpFight(roomid, roomname, people, roomSecret, nickname)
         }
       }
     },
@@ -339,12 +355,7 @@ Component({
         screenHeight,
         CustomBar
       } = app.store
-      // 40:
-      // - #swiper margin上下各10 = 20
-      // - .card-list margin上下各10 = 20
-      // 20 + 20 = 40
-      const listHeight = screenHeight - CustomBar - tabbarHeight - swiperHeight - tabHeight - 40
-      console.log('log => : initUI -> listHeight', listHeight)
+      const listHeight = screenHeight - CustomBar - tabbarHeight - swiperHeight - tabHeight - 48
       this.setData({
         listHeight
       })

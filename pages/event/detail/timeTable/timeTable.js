@@ -63,15 +63,19 @@ Component({
         })
       })
     },
-    jumpToWenView(e) {
+    jumpToWebView(e) {
       const roomid = e.currentTarget.dataset.id
       if (roomid === '') {
         $.tip('对局未在进行中')
       } else {
         api.jumpWatch({
           roomid
-        }).then(() => {
-          router.jumpToWebView(roomid, this.data.roomname, 1, 'comm_audience')
+        }).then((res) => {
+          if (res.data.code === 0) {
+            router.jumpToWebView(roomid, this.data.roomname, 1, 'race_audience')
+          } else {
+            $.tip(res.data.msg)
+          }
         })
       }
     },

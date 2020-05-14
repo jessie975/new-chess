@@ -12,7 +12,8 @@ Page({
     url: '',
     title: '',
     roomPeopleNum: 0,
-    enterMode: ''
+    enterMode: '',
+    ownerNickname: ''
   },
 
   /**
@@ -28,7 +29,8 @@ Page({
         url: data.url,
         title: data.title,
         roomPeopleNum: data.roomPeopleNum,
-        enterMode: data.enterMode || ''
+        enterMode: data.enterMode || '',
+        ownerNickname: data.ownerNickname
       })
       wx.setNavigationBarTitle({
         title: data.title || ''
@@ -41,10 +43,14 @@ Page({
   },
   onShareAppMessage(options) {
     const enterMode = this.data.enterMode
-    let title = '欢迎来京华象棋'
+    let title = '欢迎使用京华象棋'
     // comm_fight/comm_audience/create_room/race_fight/race_audience
     if (['comm_fight', 'comm_audience', 'create_room'].includes(enterMode)) {
-      title = `欢迎加入${this.data.title}对战观战`
+      if (this.data.ownerNickname !== '') {
+        title = `欢迎加入${this.data.ownerNickname}的房间对战观战`
+      } else {
+        title = `欢迎加入${this.data.title}对战观战`
+      }
     }
     if (['race_fight', 'race_audience'].includes(enterMode)) {
       title = `欢迎参加${this.data.title}比赛`

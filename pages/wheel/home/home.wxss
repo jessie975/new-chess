@@ -4,7 +4,7 @@
 .swiper {
     width: 90%;
     height: 180rpx;
-    margin: 20rpx auto;
+    margin: 10px auto;
     overflow: hidden;
 }
 .swiper image {
@@ -23,7 +23,7 @@
 }
 .card-list {
     width: 90%;
-    margin: 20rpx auto;
+    margin: 10px auto;
     padding: 16rpx;
     overflow: hidden;
 }
@@ -59,6 +59,7 @@
     padding: 0 10rpx;
     border-radius: 5rpx;
     font-size: 20rpx;
+    display: inline;
 }
 .card-container .entry .btn{
     width: 150rpx;

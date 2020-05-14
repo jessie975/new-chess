@@ -5,6 +5,8 @@
 .entry {
     width: 90%;
     margin: 30rpx auto;
+    max-height: 300px;
+    overflow: scroll;
 }
 .user-info {
     margin-left: 100rpx;

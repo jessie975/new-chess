@@ -1,12 +1,12 @@
-<view class="header flex justify-between" id="time">
-    <view class="time text-white">结束时间：{{roundList[roundIndex].endtime}}</view>
+<view class="header flex flex-wrap justify-between" id="time">
+    <view hidden="{{!roundList[roundIndex].starttime}}" class="time text-white">{{roundList[roundIndex].starttime}}(始) ~ {{roundList[roundIndex].endtime}}(终)</view>
 </view>
 <scroll-view scroll-y class="content" style="height: {{height - 35}}px">
     <view class="flex flex-wrap justify-between">
-        <view class="item margin-bottom" wx:for="{{eventList}}" wx:key="index" bindtap="jumpToWenView" data-id="{{item.roomId}}">
+        <view class="item margin-bottom" wx:for="{{eventList}}" wx:key="index" bindtap="jumpToWebView" data-id="{{item.roomId}}">
             <image class="bg-img" src="/images/chess.jpeg" />
             <view class="player one flex justify-end align-center">
-                <text class="name text-white text-cut margin-right-sm">{{item.userIdBlack}}</text>
+                <text class="name text-white text-cut margin-right-sm">{{item.userNameBlack}}</text>
                 <view class="avatar">
                     <image src="{{item.userAvatarBlack}}" />
                 </view>
@@ -15,7 +15,7 @@
                 <view class="avatar">
                     <image src="{{item.userAvatarRed}}" />
                 </view>
-                <text class="name text-white text-cut margin-left-sm">{{item.userIdRed}}</text>
+                <text class="name text-white text-cut margin-left-sm">{{item.userNameRed}}</text>
             </view>
         </view>
     </view>
