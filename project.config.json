@@ -94,6 +94,12 @@
 					"pathName": "pages/welcome/index/index",
 					"query": "page=event_detail&matchid=7&matchname=测试赛事名称4&matchState=SIGN_UP",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/wheel/creatApplyMore/creatApplyMore",
+					"pathName": "pages/wheel/creatApplyMore/creatApplyMore",
+					"scene": null
 				}
 			]
 		}

@@ -1,5 +1,5 @@
 <view class="header flex flex-wrap justify-between" id="time">
-    <view hidden="{{!roundList[roundIndex].starttime}}" class="time text-white">{{roundList[roundIndex].starttime}}(始) ~ {{roundList[roundIndex].endtime}}(终)</view>
+    <view hidden="{{!roundList[roundIndex].starttime}}" class="time text-white">{{roundList[roundIndex].starttime}} ~ {{roundList[roundIndex].endtime}}</view>
 </view>
 <scroll-view scroll-y class="content" style="height: {{height - 35}}px">
     <view class="flex flex-wrap justify-between">

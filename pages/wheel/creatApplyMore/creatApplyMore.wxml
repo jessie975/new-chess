@@ -1,0 +1,17 @@
+<view style="height: 100vh; overflow: hidden; position: fixed; width: 100%;">
+    <custom isBack="{{true}}" backText="申请扩容"></custom>
+    <image class="bg-img" src="/images/bg.jpg" />
+    <view class="container direction-column border radius flex padding justify-between align-center">
+        <view class="row flex align-center">
+            <text class="f-title text-white">申请人数：</text>
+            <input class="text-white" value="{{limitNumber}}" placeholder="请输入需要申请的人数" bindinput="inputInfo" data-key="limitNumber" />
+        </view>
+        <view class="row flex margin-top-sm">
+            <text class="f-title text-white">申请原因：</text>
+            <textarea class="input text-white padding-lr textarea" placeholder="请输入申请理由" value="{{limitReason}}" bindinput="inputInfo" data-key="limitReason"></textarea>
+        </view>
+    </view>
+    <view class="container border radius text-center submit" bindtap="submit">
+        <text class="text-lg text-theme" decode="{{true}}">确&emsp;认&emsp;申&emsp;请</text>
+    </view>
+</view>

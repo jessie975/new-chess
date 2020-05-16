@@ -19,22 +19,12 @@
                 </view>
             </view>
             <view class="people-number margin-bottom">
-                <text class="text-lg text-theme" decode="{{true}}">人&emsp;数</text>
-                <view class="number" bindtap="showPicker">
-                    <picker bindchange="PickerChange" value="{{people}}" range="{{peoplePicker}}" data-type="people">
-                        <text class="picker text-white text-lg">{{peoplePicker[people]}}<text wx:if="{{!showLimit}}">人</text></text>
-                        <text class="iconfont text-white text-lg icon-right margin-left"></text>
-                    </picker>
-                </view>
-            </view>
-            <view class="limit flex direction-column margin-bottom" wx:if="{{showLimit}}">
-                <view class="number flex">
-                    <text class="text-lg text-theme margin-right">申请人数</text>
-                    <input class="input text-white padding-lr" placeholder="请输入需要申请的人数" type="number" placeholder-class="text-lightText" value="{{limitNumber}}" bindinput="inputInfo" data-type="limitNumber" />
-                </view>
-                <view class="reason flex margin-top">
-                    <text class="text-lg text-theme margin-right textarea-label" decode="{{true}}">申请理由</text>
-                    <textarea class="input text-white padding-lr textarea" placeholder="请输入申请理由" placeholder-class="text-lightText" value="{{limitReason}}" bindinput="inputInfo" data-type="limitReason"></textarea>
+                <text class="text-lg text-theme" decode="{{true}}">玩家数</text>
+                <view class="number">
+                    <text class="people-number__text">{{people}}人</text>
+                    <text bindtap="peopleChange" data-type="sub" class="people-sub">-</text>
+                    <text bindtap="peopleChange" data-type="add" class="people-add">+</text>
+                    <text class="people-apply" bindtap="applyMorePeople">申请扩容</text>
                 </view>
             </view>
             <view class="can-watch align-center" style="justify-content: flex-start">

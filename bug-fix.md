@@ -61,16 +61,16 @@
 - 3:fix
 - 4:fix
 - 5:fix
-- 6:缺UI
-- 7:不理解意思
+- 6:fix
+- 7:fix
 - 8:fix(之前有10rpx圆角，目前12rpx)
-- 9:缺[关于我们]的文案内容
+- 9:fix[web: https://about_me.jhbrain.cn](https://about_me.jhbrain.cn)
 - 10:fix
 - 11:fix(左移按钮)
-- 12:fix:已添加"嘉年华"、"付费"、vLabel内容三种标签(文档写了有4种，后面只给了三种)
+- 12:fix:已添加"嘉年华"、"付费"、vLabel内容三种标签
 - 13:fix
 - 14:fix
 - 15:fix
-- 16:缺UI
-- 17:缺UI
+- 16:fix
+- 17:fix(创建房间人数可能有问题，不知道字段含义)
 - 18:fix

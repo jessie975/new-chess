@@ -6,7 +6,8 @@ const pages = {
   userInfoModify: '/pages/user/modify/modify',
   userQuestion: '/pages/user/question/question',
   userAboutUs: '/pages/user/aboutUs/aboutUs',
-  indexPage: '/pages/index/index'
+  indexPage: '/pages/index/index',
+  creatApplyMore: '/pages/wheel/creatApplyMore/creatApplyMore'
 }
 
 export default {

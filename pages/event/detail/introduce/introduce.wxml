@@ -8,6 +8,8 @@
             <text class="host text-white text-sm radius">主办方</text>
             <text class="text-white margin-left">{{match.sponsor}}</text>
         </view>
+        <view class="title text-white text-sm">开始: {{match.matchBegin}}</view>
+        <view class="title text-white text-sm">结束: {{match.matchEnd}}</view>
     </view>
 </view>
 <view class="rule flex justify-between">

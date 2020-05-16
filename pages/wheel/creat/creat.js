@@ -9,10 +9,9 @@ Page({
     roomDetail: '',
     password: '',
     canWatch: true,
-    people: 0,
+    people: 2,
     timeIndex: null,
     nickname: '',
-    peoplePicker: [],
     gameTimePicker: [],
     stepTimePicker: ['20秒', '40秒', '1分钟', '2分钟', '3分钟', '5分钟', '10分钟', '15分钟', '20分钟'],
     addTimePicker: [],
@@ -23,10 +22,29 @@ Page({
     customStepTime: 4,
     customAddTime: 0,
     showPassword: false,
-    roomPersonLimit: 3,
-    showLimit: false,
-    limitNumber: null,
-    limitReason: ''
+    roomPersonLimit: 2
+  },
+
+  peopleChange(event) {
+    const { type } = event.currentTarget.dataset
+    const { data: { roomPersonLimit, people } } = this
+    if (type === 'add') {
+      if (people + 1 <= roomPersonLimit) {
+        this.setData({
+          people: people + 1
+        })
+      }
+    } else {
+      if (people - 1 >= 2) {
+        this.setData({
+          people: people - 1
+        })
+      }
+    }
+  },
+
+  applyMorePeople() {
+    router.push('creatApplyMore')
   },
 
   changeWatchState() {
@@ -42,15 +60,7 @@ Page({
   },
 
   PickerChange(e) {
-    const {
-      peoplePicker
-    } = this.data
     const type = e.currentTarget.dataset.type
-    const value = e.detail.value
-    this.setData({
-      // eslint-disable-next-line eqeqeq
-      showLimit: type === 'people' && value == peoplePicker.length - 1
-    })
     this.setData({
       [type]: e.detail.value
     })
@@ -70,17 +80,11 @@ Page({
     })
   },
 
-  createData(roomPersonLimit) {
-    let PeopleBase = 2
+  createData() {
     let gameBase = 5
     let addBase = 0
-    const peoplePicker = []
     const gameTimePicker = []
     const addTimePicker = []
-    while (PeopleBase < roomPersonLimit + 1) {
-      peoplePicker.push(PeopleBase)
-      PeopleBase++
-    }
     while (gameBase < 30) {
       gameTimePicker.push(gameBase)
       gameBase += 5
@@ -93,24 +97,9 @@ Page({
       addTimePicker.push(addBase)
       addBase += 5
     }
-    peoplePicker.push('申请扩容')
     this.setData({
-      peoplePicker,
       gameTimePicker,
       addTimePicker
-    })
-  },
-
-  applyPlusRoom() {
-    const {
-      limitNumber,
-      limitReason
-    } = this.data
-    return api.applyPlusRoom({
-      num: limitNumber,
-      reason: limitReason
-    }).then(res => {
-      return res.data.code
     })
   },
 
@@ -125,16 +114,12 @@ Page({
       customGameTime,
       customStepTime,
       customAddTime,
-      peoplePicker,
       people,
       password,
       showPassword,
       gameTimePicker,
       stepTimePicker,
       addTimePicker,
-      showLimit,
-      limitNumber,
-      limitReason,
       nickname
     } = this.data
     const title = roomName || nickname + '的房间'
@@ -148,7 +133,7 @@ Page({
       beginTime,
       canWatch,
       nickname,
-      maxBCount: Number(peoplePicker[people]),
+      maxBCount: people,
       summary,
       timeRule: {
         ownerMatchTime: Number(gameTimePicker[hostGameTime] * 60),
@@ -167,20 +152,6 @@ Page({
         return
       } else {
         data.password = password
-      }
-    }
-    if (showLimit) {
-      if (!limitNumber || !limitReason) {
-        $.tip('申请扩容后，申请人数和申请原因不能为空')
-        return
-      } else {
-        const applyState = await this.applyPlusRoom()
-        if (applyState !== 0) {
-          $.tip('申请扩容失败~')
-        } else {
-          data.num = Number(limitNumber)
-          data.reason = String(limitReason)
-        }
       }
     }
     api.createRoom(data).then(res => {
@@ -205,12 +176,12 @@ Page({
   },
 
   async onLoad() {
-    const { roomPersonLimit, nickname } = await this.getUserIdentity()
+    const { roomPersonLimit = 3, nickname } = await this.getUserIdentity()
     this.setData({
       roomPersonLimit,
       nickname
     })
-    this.createData(this.data.roomPersonLimit)
+    this.createData()
   },
   onShareAppMessage() {
     return {

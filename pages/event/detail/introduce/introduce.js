@@ -164,6 +164,7 @@ Component({
       const userList = await this.getMatchEnrollpsn()
       const time = matchIntroduce.signendtime.replace(/-/g, '/')
       const timeDiff = new Date(time).getTime() - new Date().getTime() // 时间差的毫秒数
+
       this.setData({
         match: matchIntroduce,
         showLoading: false,

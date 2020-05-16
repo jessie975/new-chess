@@ -27,8 +27,9 @@
         bindrefresherrefresh="onRefresh"
         bindscrolltolower="getMoreList">
         <view class="card-container {{index === cardList.length - 1 ? '' : 'border-bottom'}}" wx:for="{{cardList}}" wx:key="index">
-            <view class="img border">
+            <view class="img">
                 <image src="{{item.avatar}}" class="avatar" />
+                <text class="nickname text-cut">{{item.nickname}}</text>
             </view>
             <view class="content">
                 <view class="room-name text-cut text-bold text-df text-text">

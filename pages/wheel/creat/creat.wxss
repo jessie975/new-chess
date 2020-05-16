@@ -23,7 +23,6 @@
 
 .container .people-number {
     align-items: center;
-    justify-content: space-between;
 }
 
 .container .password-btn {
@@ -47,6 +46,42 @@
 
 .container .people-number .number {
     display: flex;
+    height: 48rpx;
+    overflow: hidden;
+    align-items: center;
+}
+
+.people-number__text{
+    font-size: 34rpx;
+    color: #fff;
+    margin-right: 64rpx;
+}
+
+.people-sub, .people-add {
+    background-color: #857b60;
+    color: #e9dcbc;
+    height: 48rpx;
+    width: 48rpx;
+    border: 1px solid #e9dcbc;
+    border-radius: 18rpx;
+    text-align: center;
+    line-height: 48rpx;
+    font-size: 48rpx;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.people-sub {
+    margin-right: 24rpx;
+}
+
+.people-add {
+    margin-right: 36rpx;
+}
+
+.people-apply {
+    color: #e9dcbc;
+    font-size: 28rpx;
 }
 
 .container .people-number image {

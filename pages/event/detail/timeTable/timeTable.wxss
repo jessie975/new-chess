@@ -71,3 +71,7 @@
     width: 100%;
     text-align: center;
 }
+
+.name {
+    max-width: 128rpx;
+}

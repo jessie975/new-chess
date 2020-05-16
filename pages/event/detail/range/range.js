@@ -31,7 +31,8 @@ Component({
       blackPoints: '后手局数',
       blackWinPoints: '对手分',
       username: '用户名',
-      sortSingle: '排名'
+      sortSingle: '排名',
+      userSingleScore: '个人积分'
     }
   },
 
@@ -66,7 +67,7 @@ Component({
               titleMap
             }
           } = this
-          const lowFractions = ['sortSingle', 'username', ...fractions.map(item => this.replaceUnderLine(item))]
+          const lowFractions = ['sortSingle', 'username', 'userSingleScore', ...fractions.map(item => this.replaceUnderLine(item))]
           const list = make2dArr(lowFractions.length, rankingUser.length + 1)
 
           rankingUser.forEach((user, i) => {

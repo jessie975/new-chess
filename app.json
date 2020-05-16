@@ -4,6 +4,7 @@
     "pages/index/index",
     "pages/wheel/search/search",
     "pages/wheel/creat/creat",
+    "pages/wheel/creatApplyMore/creatApplyMore",
     "pages/event/detail/home/home",
     "pages/user/card/card",
     "pages/user/modify/modify",

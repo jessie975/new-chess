@@ -126,3 +126,10 @@
     padding: 15rpx;
     background: rgba(132, 120, 90, 0.4);
 }
+
+.content {
+    height: 17vh;
+    width: 100%;
+    overflow: scroll;
+    display: block;
+}
