@@ -1,6 +1,6 @@
 var filter = {
   formatTime: function (value) {
-      var time = getDate(value);
+      var time = getDate(value.replace(getRegExp("-", "g"), '/'));
       var year = time.getFullYear();
       var month = time.getMonth() + 1;
       var date = time.getDate();
